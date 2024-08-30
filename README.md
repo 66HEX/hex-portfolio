@@ -6,12 +6,12 @@
 
 HEX Portfolio is a portfolio website designed to highlight various projects and skills with a focus on modern web technologies and animations. The website is structured into six main sections:
 
--**Home Page**: Features a Stripe-style animation powered by a minified WebGL library, creating an engaging and dynamic landing experience.
--**About**: Provides background information and details about me.
--**Services**: Describes the range of services I offer.
--**Works**: Showcases the portfolio projects. This section is connected to a backend system where I manage the project listings through an admin dashboard. Access to this dashboard is secured via NextAuth, and project data is handled using Supabase.
--**Contact**: Contains a contact button that copies my email address to the clipboard. The section is equipped with a GSAP-animated popup that provides feedback when the email is copied.
--**Admin Dashboard**: A protected area for managing and updating project listings, accessible only with proper authentication.
+- **Home Page**: Features a Stripe-style animation powered by a minified WebGL library, creating an engaging and dynamic landing experience.
+- **About**: Provides background information and details about me.
+- **Services**: Describes the range of services I offer.
+- **Works**: Showcases the portfolio projects. This section is connected to a backend system where I manage the project listings through an admin dashboard. Access to this dashboard is secured via NextAuth, and project data is handled using Supabase.
+- **Contact**: Contains a contact button that copies my email address to the clipboard. The section is equipped with a GSAP-animated popup that provides feedback when the email is copied.
+- **Admin Dashboard**: A protected area for managing and updating project listings, accessible only with proper authentication.
 
 ## Table of Contents
 
