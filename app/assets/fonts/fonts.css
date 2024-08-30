@@ -1,0 +1,14 @@
+@font-face {
+    font-family: 'NeueMontreal';
+    src: url('PPNeueMontreal-Variable (1).woff2') format('woff2'),
+    url('PPNeueMontreal-Variable (2).woff') format('woff');
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SupplyMono';
+    src: url('PPSupplyMono-Variable.woff') format('woff');
+    font-weight: 100 900;
+    font-style: normal;
+}
