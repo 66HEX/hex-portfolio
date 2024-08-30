@@ -13,6 +13,8 @@ HEX Portfolio is a portfolio website designed to highlight various projects and 
 - **Contact**: Contains a contact button that copies my email address to the clipboard. The section is equipped with a GSAP-animated popup that provides feedback when the email is copied.
 - **Admin Dashboard**: A protected area for managing and updating project listings, accessible only with proper authentication.
 
+The entire website is animated using GSAP and Blobity, ensuring a smooth and visually appealing user experience.
+
 ## Table of Contents
 
 - [Demo](#demo)
