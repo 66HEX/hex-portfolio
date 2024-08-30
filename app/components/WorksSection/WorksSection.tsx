@@ -83,6 +83,7 @@ export default function WorksSection() {
                     },
                 }
             );
+            ScrollTrigger.refresh(); // Dodaj tę linię
         }
     }, [projectsLoaded]);
 
