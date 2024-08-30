@@ -1,105 +1,188 @@
-"use client";
-
+"use client"
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { supabase } from '@/app/utils/supabaseClient';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const initialProjects = [
-    {
-        title: "Gym Website",
-        description: "Created a powerful online presence for powerlifting enthusiasts.",
-        image: "/works/leanbulls-resized.webp",
-        githubLink: "https://github.com/66HEX/lean-bulls-gym",
-        liveDemoLink: "https://66hex.github.io/lean-bulls-gym/"
-    },
-    {
-        title: "Logo Design",
-        description: "Designed a fresh and distinctive logo to enhance brand identity.",
-        image: "/works/logo-resized.webp"
-    },
-    {
-        title: "E-commerce Store",
-        description: "Launched a seamless online shopping experience using Shopify.",
-        image: "/works/natalia-resized.webp",
-        liveDemoLink: "https://nataliajasinska.pl/"
-    },
-    {
-        title: "Sponsorship Proposal",
-        description: "Designed an eye-catching sponsorship proposal.",
-        image: "/works/sponsorship-resized.webp",
-    },
-    {
-        title: "Landing Page",
-        description: "Designed an impactful landing page highlighting marketing solutions.",
-        image: "/works/mocommerce-resized.webp",
-        githubLink: "https://github.com/66HEX/mo-commerce",
-        liveDemoLink: "https://mocommerce.pl/"
-    }
-];
+gsap.registerPlugin(ScrollTrigger);
+
+interface Project {
+    id: number;
+    title: string;
+    description: string;
+    image: string | null;
+    githubLink: string | null;
+    liveDemoLink: string | null;
+}
 
 export default function AdminDashboard() {
     const { data: session, status } = useSession();
     const router = useRouter();
-    const [projects, setProjects] = useState(initialProjects);
+    const [projects, setProjects] = useState<Project[]>([]);
     const [newProject, setNewProject] = useState({
         title: "",
         description: "",
-        image: "",
+        image: null as File | null,
         githubLink: "",
         liveDemoLink: ""
     });
+    const [toastMessage, setToastMessage] = useState<string | null>(null);
 
     useEffect(() => {
-        console.log("Session status:", status); // Debug session status
         if (status === "unauthenticated") {
-            console.log("Redirecting to /admin/login due to unauthenticated status.");
             router.push("/admin/login");
+        } else if (status === "authenticated") {
+            fetchProjects().catch(console.error);
         }
     }, [status, router]);
 
+    useEffect(() => {
+        if (toastMessage) {
+            const toastAnimation = gsap.fromTo(
+                ".toast-message",
+                { opacity: 0, y: 50 },
+                { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
+            );
+            toastAnimation.play();
+            setTimeout(() => {
+                toastAnimation.reverse();
+                setTimeout(() => setToastMessage(null), 500);
+            }, 3000);
+        }
+    }, [toastMessage]);
+
+    const fetchProjects = async () => {
+        const { data, error } = await supabase
+            .from("projects")
+            .select("*");
+
+        if (error) {
+            console.error("Error fetching projects:", error.message);
+        } else {
+            setProjects(data || []);
+        }
+    };
+
     if (status === "loading") {
-        console.log("Loading session...");
         return <div>Loading...</div>;
     }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
-        console.log(`Input change - Name: ${name}, Value: ${value}`); // Debug input changes
         setNewProject(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleAddProject = () => {
-        console.log("Adding new project:", newProject); // Debug project addition
-        setProjects(prev => [...prev, newProject]);
-        setNewProject({
-            title: "",
-            description: "",
-            image: "",
-            githubLink: "",
-            liveDemoLink: ""
-        });
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (files && files.length > 0) {
+            setNewProject(prev => ({ ...prev, image: files[0] }));
+        } else {
+            // Handle the case where no files are selected or files is null
+            setNewProject(prev => ({ ...prev, image: null }));
+        }
     };
 
-    const handleDeleteProject = (index: number) => {
-        console.log(`Deleting project at index: ${index}`); // Debug project deletion
-        setProjects(prev => prev.filter((_, i) => i !== index));
+    const handleAddProject = async () => {
+        try {
+            if (!newProject.image) {
+                throw new Error('Image file is missing');
+            }
+
+            const file = newProject.image;
+
+            // Upload the image to Supabase Storage
+            const { data: uploadData, error: uploadError } = await supabase.storage
+                .from('project-images')
+                .upload(`/${Date.now()}_${file.name}`, file);
+
+            if (uploadError) {
+                throw new Error(`Error uploading image: ${uploadError.message}`);
+            }
+
+            // Construct the public URL manually
+            const publicURLBase = "https://qrpsmqlrurzqbpluvvca.supabase.co/storage/v1/object/public/project-images/";
+            const publicURL = `${publicURLBase}${uploadData.path}`;
+
+            // Insert the project into the database
+            const projectWithImage = {
+                title: newProject.title,
+                description: newProject.description,
+                image: publicURL,
+                githubLink: newProject.githubLink,
+                liveDemoLink: newProject.liveDemoLink,
+            };
+
+            const { data, error } = await supabase
+                .from('projects')
+                .insert([projectWithImage])
+                .select(); // Ensure you call `.select()` to get data
+
+            if (error) {
+                throw new Error(`Error adding project: ${error.message}`);
+            }
+
+            // Check if `data` is not null and has at least one element
+            if (!data || data.length === 0) {
+                throw new Error('No data returned from the insert operation');
+            }
+
+            // Update the state with the new project
+            setProjects(prev => [...prev, { ...projectWithImage, id: data[0].id }]);
+
+            // Reset the new project form
+            setNewProject({
+                title: "",
+                description: "",
+                image: null,
+                githubLink: "",
+                liveDemoLink: ""
+            });
+
+            // Show toast message
+            setToastMessage("Project added successfully!");
+
+        } catch (error) {
+            // Type guard to check if error is an instance of Error
+            if (error instanceof Error) {
+                console.error(error.message);
+            } else {
+                console.error("An unknown error occurred");
+            }
+        }
+    };
+
+    const handleDeleteProject = async (id: number) => {
+        const { data, error } = await supabase
+            .from("projects")
+            .delete()
+            .eq('id', id);
+
+        if (error) {
+            console.error("Error deleting project:", error.message);
+        } else {
+            setProjects(prev => prev.filter(project => project.id !== id));
+            setToastMessage("Project deleted successfully!");
+        }
     };
 
     const handleLogOut = async () => {
         try {
             await signOut({ redirect: false }); // Do not redirect automatically
-
             router.push("/");
         } catch (error) {
+            console.error("Error during sign out:", error);
         }
     };
 
     return (
         <section className="w-screen p-4 md:p-8 lg:p-12 xl:p-16 bg-hexwhite flex flex-col items-center">
-            <button className="absolute top-5 left-5 text-hexblack text-base font-SupplyMono hover:underline cursor-pointer"
-                    onClick={handleLogOut}>
+            <button
+                className="absolute top-5 left-5 text-hexblack text-base font-SupplyMono hover:underline cursor-pointer"
+                onClick={handleLogOut}
+            >
                 ← Log Out
             </button>
             <div className="w-full max-w-7xl mx-auto flex justify-center items-center my-12">
@@ -130,11 +213,9 @@ export default function AdminDashboard() {
                         rows={4}
                     />
                     <input
-                        type="text"
+                        type="file"
                         name="image"
-                        value={newProject.image}
-                        onChange={handleInputChange}
-                        placeholder="Image URL"
+                        onChange={handleFileChange}
                         className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-hexblack transition duration-300"
                     />
                     <input
@@ -179,27 +260,27 @@ export default function AdminDashboard() {
                         </tr>
                         </thead>
                         <tbody>
-                        {projects.map((project, index) => (
-                            <tr key={index} className="border-b border-gray-300 font-SupplyMono">
+                        {projects.map(project => (
+                            <tr key={project.id} className="border-b border-gray-300 font-SupplyMono">
                                 <td className="p-4">{project.title}</td>
                                 <td className="p-4">{project.description}</td>
                                 <td className="p-4">
-                                    <Image
-                                        src={project.image}
-                                        alt={project.title}
-                                        width={100}
-                                        height={60}
-                                        className="rounded-lg"
-                                    />
+                                    {project.image ? (
+                                        <Image
+                                            src={project.image}
+                                            alt={project.title}
+                                            width={100}
+                                            height={100}
+                                            className="object-cover rounded-lg"
+                                        />
+                                    ) : (
+                                        "No Image"
+                                    )}
                                 </td>
                                 <td className="p-4">
                                     {project.githubLink ? (
-                                        <a
-                                            href={project.githubLink}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-hexblack underline"
-                                        >
+                                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
+                                           className="text-hexblack underline">
                                             GitHub
                                         </a>
                                     ) : (
@@ -208,12 +289,8 @@ export default function AdminDashboard() {
                                 </td>
                                 <td className="p-4">
                                     {project.liveDemoLink ? (
-                                        <a
-                                            href={project.liveDemoLink}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-hexblack underline"
-                                        >
+                                        <a href={project.liveDemoLink} target="_blank" rel="noopener noreferrer"
+                                           className="text-hexblack underline">
                                             Live Demo
                                         </a>
                                     ) : (
@@ -222,7 +299,7 @@ export default function AdminDashboard() {
                                 </td>
                                 <td className="p-4">
                                     <button
-                                        onClick={() => handleDeleteProject(index)}
+                                        onClick={() => handleDeleteProject(project.id)}
                                         className="text-red-500 hover:text-red-700"
                                     >
                                         Delete
@@ -234,6 +311,12 @@ export default function AdminDashboard() {
                     </table>
                 </div>
             </div>
+
+            {toastMessage && (
+                <div className="toast-message fixed bottom-4 right-4 bg-hexblack text-hexwhite px-4 py-2 rounded-lg shadow-lg z-50">
+                    {toastMessage}
+                </div>
+            )}
         </section>
     );
 }

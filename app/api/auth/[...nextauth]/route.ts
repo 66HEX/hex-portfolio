@@ -1,14 +1,9 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcrypt from 'bcrypt';
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-if (!supabaseUrl || !supabaseKey) {
-    throw new Error('Supabase URL or key is missing');
-}
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
@@ -29,35 +24,17 @@ const authOptions: NextAuthOptions = {
 
                 const { username, password } = credentials;
 
-                const { data, error } = await supabase
-                    .from('Users')
-                    .select('*')
-                    .eq('login', username)
-                    .single();
+                const { data: user, error: loginError } = await supabase.auth.signInWithPassword({
+                    email: username,
+                    password: password,
+                });
 
-                if (error) {
-                    console.error('Error fetching user:', error.message);
+                if (loginError || !user) {
+                    console.error('Error logging in:', loginError?.message || 'No user found');
                     return null;
                 }
 
-                if (!data) {
-                    console.error('No user found with this username');
-                    return null;
-                }
-
-                const { password: storedPassword } = data;
-
-                console.log('Comparing passwords:', password, storedPassword);
-
-                const isPasswordValid = await bcrypt.compare(password, storedPassword);
-
-                if (isPasswordValid) {
-                    console.log('Password is valid');
-                    return { id: data.id, name: username };
-                } else {
-                    console.error('Invalid password');
-                    return null;
-                }
+                return { id: user.user.id, name: user.user.email };
             }
         })
     ],

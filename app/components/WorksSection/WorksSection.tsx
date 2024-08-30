@@ -1,84 +1,90 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Image from "next/image";
+import { supabase } from '@/app/utils/supabaseClient';
+
+interface Project {
+    title: string;
+    description: string;
+    image: string;
+    githubLink?: string;
+    liveDemoLink?: string;
+}
 
 gsap.registerPlugin(ScrollTrigger);
 
-const projects = [
-    {
-        title: "Gym Website",
-        description: "Created a powerful online presence for powerlifting enthusiasts.",
-        image: "/works/leanbulls-resized.webp",
-        githubLink: "https://github.com/66HEX/lean-bulls-gym",
-        liveDemoLink: "https://66hex.github.io/lean-bulls-gym/"
-    },
-    {
-        title: "Logo Design",
-        description: "Designed a fresh and distinctive logo to enhance brand identity.",
-        image: "/works/logo-resized.webp"
-    },
-    {
-        title: "E-commerce Store",
-        description: "Launched a seamless online shopping experience using Shopify.",
-        image: "/works/natalia-resized.webp",
-        liveDemoLink: "https://nataliajasinska.pl/"
-    },
-    {
-        title: "Sponsorship Proposal",
-        description: "Designed an eye-catching sponsorship proposal.",
-        image: "/works/sponsorship-resized.webp",
-    },
-    {
-        title: "Landing Page",
-        description: "Designed an impactful landing page highlighting marketing solutions.",
-        image: "/works/mocommerce-resized.webp",
-        githubLink: "https://github.com/66HEX/mo-commerce",
-        liveDemoLink: "https://mocommerce.pl/"
-    }
-];
-
 export default function WorksSection() {
-    useEffect(() => {
-        // Animation for the section title
-        gsap.fromTo(
-            "#works",
-            { opacity: 0, y: 50 },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 1.2,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: "#works h1",
-                    start: "top 80%",
-                    end: "top top",
-                    scrub: 1,
-                },
-            }
-        );
+    const [projects, setProjects] = useState<Project[]>([]);
+    const [projectsLoaded, setProjectsLoaded] = useState<boolean>(false);
 
-        // Animation for the project cards
-        gsap.fromTo(
-            ".project-card",
-            { opacity: 0, y: 50 },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                stagger: 0.3,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: "#works",
-                    start: "top center",
-                    end: "top top",
-                    scrub: 1,
-                },
+    useEffect(() => {
+        let isMounted = true;
+
+        const fetchProjects = async () => {
+            try {
+                const { data, error } = await supabase.from('projects').select('*');
+                if (error) {
+                    throw new Error(error.message);
+                }
+                if (isMounted) {
+                    setProjects(data as Project[]);
+                    setProjectsLoaded(true);
+                }
+            } catch (error) {
+                console.error('Error fetching projects:', error);
             }
-        );
+        };
+
+        fetchProjects().catch(console.error);
+
+        return () => {
+            isMounted = false;
+        };
     }, []);
+
+    useEffect(() => {
+        if (projectsLoaded) {
+            // Animation for the section title
+            gsap.fromTo(
+                "#works",
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#works h1",
+                        start: "top 80%",
+                        end: "top top",
+                        scrub: 1,
+                    },
+                }
+            );
+
+            // Animation for the project cards
+            gsap.fromTo(
+                ".project-card",
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    stagger: 0.3,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#works",
+                        start: "top center",
+                        end: "top top",
+                        scrub: 1,
+                    },
+                }
+            );
+        }
+    }, [projectsLoaded]);
 
     return (
         <section id="works" className="w-screen p-4 md:p-8 lg:p-12 xl:p-16 bg-hexwhite flex flex-col items-center justify-center overflow-hidden py-16">

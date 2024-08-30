@@ -12,7 +12,6 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.45.2",
     "@svgr/webpack": "^8.1.0",
-    "bcrypt": "^5.1.1",
     "blobity": "^0.2.3",
     "gsap": "^3.12.5",
     "kinet": "^2.2.1",

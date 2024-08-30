@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    images: {
+        domains: ['qrpsmqlrurzqbpluvvca.supabase.co'],
+    },
     webpack(config) {
         config.module.rules.push({
             test: /\.svg$/,
