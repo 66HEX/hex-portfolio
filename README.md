@@ -1,8 +1,17 @@
-# Hexthecoder
+# HEX Portfolio
 
-**Hexthecoder** is a modern web development project that showcases a portfolio website built with cutting-edge technologies like Next.js, React, GSAP, and TailwindCSS. This repository contains the source code for the website, which includes sections like About, Services, and more, all with smooth animations and responsive design.
+**HEX Portfolio** is a modern web development project that showcases a portfolio website built with cutting-edge technologies like Next.js, React, GSAP, and TailwindCSS. This repository contains the source code for the website, which includes sections like About, Services, and more, all with smooth animations and responsive design.
 
 ## Table of Contents
+
+HEX Portfolio is a portfolio website designed to highlight various projects and skills with a focus on modern web technologies and animations. The website is structured into six main sections:
+
+-**Home Page**: Features a Stripe-style animation powered by a minified WebGL library, creating an engaging and dynamic landing experience.
+-**About**: Provides background information and details about me.
+-**Services**: Describes the range of services I offer.
+-**Works**: Showcases the portfolio projects. This section is connected to a backend system where I manage the project listings through an admin dashboard. Access to this dashboard is secured via NextAuth, and project data is handled using Supabase.
+-**Contact**: Contains a contact button that copies my email address to the clipboard. The section is equipped with a GSAP-animated popup that provides feedback when the email is copied.
+-**Admin Dashboard**: A protected area for managing and updating project listings, accessible only with proper authentication.
 
 - [Demo](#demo)
 - [Technologies Used](#technologies-used)
@@ -24,6 +33,8 @@ You can view a live demo of the project here: [Live Demo](https://www.hexthecode
 - **Kinet**: A library for mouse-follow animations.
 - **Lodash**: A utility library delivering consistency, customization, and performance.
 - **Sharp**: An image processing library used for optimizing images.
+- **Supabase**: An image processing library used for optimizing images.
+- **NextAuth**: A flexible authentication library for Next.js applications.
 
 ## Installation
 
