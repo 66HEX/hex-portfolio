@@ -125,7 +125,7 @@ export default function WorksSection() {
                                         Live Demo
                                     </a>
                                 ) : (
-                                    <span className="font-SupplyMono text-base lg:text-lg text-hexblack opacity-0">
+                                    <span className="font-SupplyMono text-lg text-hexblack opacity-0">
                                         Live Demo
                                     </span>
                                 )}
