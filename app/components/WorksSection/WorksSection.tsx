@@ -111,21 +111,21 @@ export default function WorksSection() {
                             <div className="flex justify-between">
                                 {project.githubLink ? (
                                     <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
-                                       className="font-SupplyMono text-lg text-hexblack underline">
+                                       className="font-SupplyMono text-xl text-hexblack underline">
                                         GitHub
                                     </a>
                                 ) : (
-                                    <span className="font-SupplyMono text-lg text-hexblack opacity-0">
+                                    <span className="font-SupplyMono text-xl text-hexblack opacity-0">
                                         GitHub
                                     </span>
                                 )}
                                 {project.liveDemoLink ? (
                                     <a href={project.liveDemoLink} target="_blank" rel="noopener noreferrer"
-                                       className="font-SupplyMono text-lg text-hexblack underline">
+                                       className="font-SupplyMono text-xl text-hexblack underline">
                                         Live Demo
                                     </a>
                                 ) : (
-                                    <span className="font-SupplyMono text-lg text-hexblack opacity-0">
+                                    <span className="font-SupplyMono text-xl text-hexblack opacity-0">
                                         Live Demo
                                     </span>
                                 )}

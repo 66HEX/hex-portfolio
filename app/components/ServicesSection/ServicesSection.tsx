@@ -55,27 +55,27 @@ export default function ServicesSection() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-12 max-w-7xl">
                 <div className="service-card bg-hexwhite text-hexblack p-6 lg:p-8 rounded-2xl shadow-lg" data-blobity>
-                    <h2 className="font-bold text-2xl mb-4">Custom Web Design</h2>
+                    <h2 className="font-bold text-2xl lg:text-3xl mb-4">Custom Web Design</h2>
                     <p className="font-SupplyMono text-lg">Crafting unique and responsive designs tailored to your brand.</p>
                 </div>
                 <div className="service-card bg-hexwhite text-hexblack p-6 lg:p-8 rounded-2xl shadow-lg" data-blobity>
-                    <h2 className="font-bold text-2xl mb-4">Front-End Development</h2>
+                    <h2 className="font-bold text-2xl lg:text-3xl mb-4">Front-End Development</h2>
                     <p className="font-SupplyMono text-lg">Building dynamic and interactive user interfaces with the latest technologies.</p>
                 </div>
                 <div className="service-card bg-hexwhite text-hexblack p-6 lg:p-8 rounded-2xl shadow-2xl" data-blobity>
-                    <h2 className="font-bold text-2xl mb-4">SEO Optimization</h2>
+                    <h2 className="font-bold text-2xl lg:text-3xl mb-4">SEO Optimization</h2>
                     <p className="font-SupplyMono text-lg">Enhancing your website&#8217;s visibility and ranking in search engine results.</p>
                 </div>
                 <div className="service-card bg-hexwhite text-hexblack p-6 lg:p-8 rounded-2xl shadow-2xl" data-blobity>
-                    <h2 className="font-bold text-2xl mb-4">Maintenance & Support</h2>
+                    <h2 className="font-bold text-2xl lg:text-3xl mb-4">Maintenance & Support</h2>
                     <p className="font-SupplyMono text-lg">Providing ongoing support and updates to ensure your site runs smoothly.</p>
                 </div>
                 <div className="service-card bg-hexwhite text-hexblack p-6 lg:p-8 rounded-2xl shadow-2xl" data-blobity>
-                    <h2 className="font-bold text-2xl mb-4">E-commerce Solutions</h2>
+                    <h2 className="font-bold text-2xl lg:text-3xl mb-4">E-commerce Solutions</h2>
                     <p className="font-SupplyMono text-lg">Creating seamless and secure online shopping experiences for your customers.</p>
                 </div>
                 <div className="service-card bg-hexwhite text-hexblack p-6 lg:p-8 rounded-2xl shadow-2xl" data-blobity>
-                    <h2 className="font-bold text-2xl mb-4">Performance Optimization</h2>
+                    <h2 className="font-bold text-2xl lg:text-3xl mb-4">Performance Optimization</h2>
                     <p className="font-SupplyMono text-lg">Improving website speed and performance for a better user experience.</p>
                 </div>
             </div>
