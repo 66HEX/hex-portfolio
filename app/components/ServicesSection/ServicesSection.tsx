@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ServicesSection() {
     useEffect(() => {
-        // Animation for the section title
+
         gsap.fromTo(
             "#services h1",
             { opacity: 0, y: 50 },
@@ -25,7 +25,6 @@ export default function ServicesSection() {
             }
         );
 
-        // Animation for service cards
         gsap.fromTo(
             ".service-card",
             { opacity: 0, y: 50 },

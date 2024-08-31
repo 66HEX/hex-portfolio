@@ -1,5 +1,7 @@
 "use client";
 import { useEffect } from 'react';
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { initializeLenis, destroyLenis } from '@/app/utils/LenisUtils';
 import { initialBlobityOptions } from "./utils/BlobityConfig";
 import useBlobity from "blobity/lib/react/useBlobity";
@@ -11,6 +13,7 @@ import ServicesSection from "@/app/components/ServicesSection/ServicesSection";
 import WorksSection from "@/app/components/WorksSection/WorksSection";
 import ContactSection from "@/app/components/ContactSection/ContactSection";
 
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
     useEffect(() => {

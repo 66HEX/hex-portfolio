@@ -55,8 +55,8 @@ export default function ContactSection() {
             toastAnimation.play();
             setTimeout(() => {
                 toastAnimation.reverse();
-                setTimeout(() => setShowMessage(false), 500); // Czeka, aż animacja cofania się zakończy
-            }, 3000); // Czas wyświetlania komunikatu
+                setTimeout(() => setShowMessage(false), 500);
+            }, 3000);
         }
     }, [showMessage]);
 

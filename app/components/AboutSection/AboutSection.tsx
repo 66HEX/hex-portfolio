@@ -5,12 +5,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import ProfilePic from "@/public/about.webp";
 
-// Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutSection() {
     useEffect(() => {
-        // Animation for the image and text container
+
         gsap.fromTo(
             ".profile-img",
             { opacity: 0, scale: 0.9 },

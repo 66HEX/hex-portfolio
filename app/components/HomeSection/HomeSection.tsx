@@ -6,7 +6,6 @@ import GradientCanvas from "@/app/components/ui/Gradient/GradientCanvas";
 import RotatingButton from "@/app/components/ui/RotatingButton/RotatingButton";
 import Logo from "@/app/assets/svg/hex-logo.svg";
 
-// Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HomeSection() {
@@ -18,7 +17,6 @@ export default function HomeSection() {
                 scale: 0.9,
                 y: 1000,
                 scrollTrigger: {
-                    trigger: "scrolltrigger",
                     start: "top top",
                     end: "bottom top",
                     scrub: true,

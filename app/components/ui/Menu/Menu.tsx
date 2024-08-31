@@ -124,7 +124,6 @@ const Menu: React.FC = () => {
                 ref={navMenuRef}
                 aria-hidden={!isToggled}
             >
-                {/* Links to sections */}
                 <li className="w-full text-2xl font-medium list-none flex items-center justify-between">
                     <Link href="#home" aria-label="home section button"
                           className="font-SupplyMono text-4xl text-hexwhite"

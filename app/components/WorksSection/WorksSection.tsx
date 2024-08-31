@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
@@ -47,7 +46,7 @@ export default function WorksSection() {
 
     useEffect(() => {
         if (projectsLoaded) {
-            // Animation for the section title
+
             gsap.fromTo(
                 "#works",
                 { opacity: 0, y: 50 },
@@ -65,7 +64,6 @@ export default function WorksSection() {
                 }
             );
 
-            // Animation for the project cards
             gsap.fromTo(
                 ".project-card",
                 { opacity: 0, y: 50 },
@@ -83,7 +81,7 @@ export default function WorksSection() {
                     },
                 }
             );
-            ScrollTrigger.refresh(); // Dodaj tę linię
+            ScrollTrigger.refresh();
         }
     }, [projectsLoaded]);
 
