@@ -107,7 +107,7 @@ export default function WorksSection() {
                         </div>
                         <div className="p-6 lg:p-8">
                             <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack mb-4">{project.title}</h2>
-                            <p className="font-SupplyMono text-hexblack mb-4">{project.description}</p>
+                            <p className="font-SupplyMono text-lg text-hexblack mb-4">{project.description}</p>
                             <div className="flex justify-between">
                                 {project.githubLink ? (
                                     <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
