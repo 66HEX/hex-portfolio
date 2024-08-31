@@ -80,7 +80,6 @@ export default function AdminDashboard() {
         if (files && files.length > 0) {
             setNewProject(prev => ({ ...prev, image: files[0] }));
         } else {
-            // Handle the case where no files are selected or files is null
             setNewProject(prev => ({ ...prev, image: null }));
         }
     };
@@ -93,7 +92,6 @@ export default function AdminDashboard() {
 
             const file = newProject.image;
 
-            // Upload the image to Supabase Storage
             const { data: uploadData, error: uploadError } = await supabase.storage
                 .from('project-images')
                 .upload(`/${Date.now()}_${file.name}`, file);
@@ -102,11 +100,9 @@ export default function AdminDashboard() {
                 throw new Error(`Error uploading image: ${uploadError.message}`);
             }
 
-            // Construct the public URL manually
-            const publicURLBase = "https://qrpsmqlrurzqbpluvvca.supabase.co/storage/v1/object/public/project-images/";
+            const publicURLBase = process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL;
             const publicURL = `${publicURLBase}${uploadData.path}`;
 
-            // Insert the project into the database
             const projectWithImage = {
                 title: newProject.title,
                 description: newProject.description,
@@ -124,15 +120,12 @@ export default function AdminDashboard() {
                 throw new Error(`Error adding project: ${error.message}`);
             }
 
-            // Check if `data` is not null and has at least one element
             if (!data || data.length === 0) {
                 throw new Error('No data returned from the insert operation');
             }
 
-            // Update the state with the new project
             setProjects(prev => [...prev, { ...projectWithImage, id: data[0].id }]);
 
-            // Reset the new project form
             setNewProject({
                 title: "",
                 description: "",
@@ -145,7 +138,6 @@ export default function AdminDashboard() {
             setToastMessage("Project added successfully!");
 
         } catch (error) {
-            // Type guard to check if error is an instance of Error
             if (error instanceof Error) {
                 console.error(error.message);
             } else {

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation"; // nowy hook dla nawigacji w Next.js 13+
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const AdminLogin = () => {
@@ -14,7 +14,6 @@ const AdminLogin = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Próba logowania
         const result = await signIn("credentials", {
             redirect: false,
             username,
