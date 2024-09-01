@@ -60,7 +60,7 @@ export default function AdminDashboard() {
         const { data, error } = await supabase
             .from("projects")
             .select("*")
-            .order("order", { ascending: true }); // Fetch projects ordered by the 'order' field
+            .order("order", { ascending: true });
 
         if (error) {
             console.error("Error fetching projects:", error.message);
@@ -110,13 +110,13 @@ export default function AdminDashboard() {
                 image: publicURL,
                 githubLink: newProject.githubLink,
                 liveDemoLink: newProject.liveDemoLink,
-                order: newOrder // Set the order starting from 1
+                order: newOrder
             };
 
             const { data, error } = await supabase
                 .from('projects')
                 .insert([projectWithImage])
-                .select(); // Ensure you call `.select()` to get data
+                .select();
 
             if (error) {
                 throw new Error(`Error adding project: ${error.message}`);
@@ -248,38 +248,25 @@ export default function AdminDashboard() {
             >
                 ← Log Out
             </button>
-            <div className="w-full max-w-7xl mx-auto flex justify-center items-center my-12">
+            <div className="w-full max-w-7xl mx-auto flex justify-center items-center mt-12 md:mt-0">
                 <h1 className="font-NeueMontreal text-4xl md:text-6xl lg:text-7xl font-black text-hexblack tracking-tight leading-none uppercase">
                     Admin Dashboard
                 </h1>
             </div>
 
-            <div className="w-full max-w-7xl mx-auto bg-white p-8 rounded-2xl shadow-xl mb-12">
-                <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack mb-6">
+            <div className="w-full max-w-7xl mx-auto my-8 bg-white p-8 rounded-2xl shadow-xl">
+                <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack">
                     Add New Project
                 </h2>
-                <div className="space-y-6 font-SupplyMono">
+                <div
+                    className="mt-4 flex flex-wrap md:flex-nowrap justify-between items-center space-y-4 md:space-y-0 font-SupplyMono">
                     <input
                         type="text"
                         name="title"
                         value={newProject.title}
                         onChange={handleInputChange}
                         placeholder="Project Title"
-                        className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-hexblack transition duration-300"
-                    />
-                    <textarea
-                        name="description"
-                        value={newProject.description}
-                        onChange={handleInputChange}
-                        placeholder="Project Description"
-                        className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-hexblack transition duration-300"
-                        rows={4}
-                    />
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        className="w-full border border-gray-300 rounded-lg p-2"
+                        className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack"
                     />
                     <input
                         type="text"
@@ -287,7 +274,7 @@ export default function AdminDashboard() {
                         value={newProject.githubLink}
                         onChange={handleInputChange}
                         placeholder="GitHub Link"
-                        className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-hexblack transition duration-300"
+                        className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack md:ml-4"
                     />
                     <input
                         type="text"
@@ -295,108 +282,115 @@ export default function AdminDashboard() {
                         value={newProject.liveDemoLink}
                         onChange={handleInputChange}
                         placeholder="Live Demo Link"
-                        className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-hexblack transition duration-300"
+                        className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack md:ml-4"
                     />
+                    <input
+                        type="file"
+                        name="image"
+                        onChange={handleFileChange}
+                        className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack md:ml-4"
+                    />
+                </div>
+                <div className="mt-4 font-SupplyMono">
+        <textarea
+            name="description"
+            value={newProject.description}
+            onChange={handleInputChange}
+            placeholder="Project Description"
+            className="w-full px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack"
+        />
+                </div>
+
+                <div className="mt-6 flex justify-end">
                     <button
                         onClick={handleAddProject}
-                        className="bg-hexblack text-white p-4 rounded-lg font-SupplyMono text-lg shadow-md hover:bg-hexdark transition duration-300"
+                        className="px-6 py-2 text-lg font-bold font-NeueMontreal text-white bg-hexblack rounded-lg hover:bg-hexgray focus:outline-none"
                     >
                         Add Project
                     </button>
                 </div>
             </div>
 
-            <div className="w-full max-w-7xl mx-auto bg-white p-6 rounded-2xl shadow-xl">
-                <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack mb-6">
-                    Project List
-                </h2>
-                <DragDropContext onDragEnd={handleOnDragEnd}>
-                    <Droppable droppableId="droppable">
-                        {(provided) => (
-                            <table
-                                className="min-w-full bg-white border border-gray-300 rounded-lg shadow-sm"
-                                ref={provided.innerRef}
-                                {...provided.droppableProps}
-                            >
-                                <thead>
-                                <tr className="bg-hexblack text-white font-SupplyMono">
-                                    <th className="p-4 text-left">Order</th>
-                                    <th className="p-4 text-left">Title</th>
-                                    <th className="p-4 text-left">Description</th>
-                                    <th className="p-4 text-left">Image</th>
-                                    <th className="p-4 text-left">GitHub Link</th>
-                                    <th className="p-4 text-left">Live Demo Link</th>
-                                    <th className="p-4 text-left">Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {projects.map((project, index) => (
-                                    <Draggable key={project.id} draggableId={project.id.toString()} index={index}>
-                                        {(provided) => (
-                                            <tr
-                                                ref={provided.innerRef}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                                className="border-b border-gray-300 font-SupplyMono"
-                                            >
-                                                <td className="p-4">{project.order}</td>
-                                                <td className="p-4">{project.title}</td>
-                                                <td className="p-4">{project.description}</td>
-                                                <td className="p-4">
-                                                    {project.image ? (
-                                                        <Image
-                                                            src={project.image}
-                                                            alt={project.title}
-                                                            width={100}
-                                                            height={100}
-                                                            className="object-cover rounded-lg"
-                                                        />
-                                                    ) : (
-                                                        "No Image"
-                                                    )}
-                                                </td>
-                                                <td className="p-4">
-                                                    {project.githubLink ? (
-                                                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
-                                                           className="text-hexblack underline">
-                                                            GitHub
-                                                        </a>
-                                                    ) : (
-                                                        "N/A"
-                                                    )}
-                                                </td>
-                                                <td className="p-4">
-                                                    {project.liveDemoLink ? (
-                                                        <a href={project.liveDemoLink} target="_blank" rel="noopener noreferrer"
-                                                           className="text-hexblack underline">
-                                                            Live Demo
-                                                        </a>
-                                                    ) : (
-                                                        "N/A"
-                                                    )}
-                                                </td>
-                                                <td className="p-4">
-                                                    <button
-                                                        onClick={() => handleDeleteProject(project.id)}
-                                                        className="text-red-500 hover:text-red-700"
+
+            <DragDropContext onDragEnd={handleOnDragEnd}>
+                <Droppable droppableId="projects">
+                    {(provided) => (
+                        <div
+                            className="w-full max-w-7xl mx-auto bg-white p-8 rounded-2xl shadow-xl space-y-4"
+                            {...provided.droppableProps}
+                            ref={provided.innerRef}
+                        >
+                            <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack mb-6">
+                                Project list
+                            </h2>
+                            {projects.map((project, index) => (
+                                <Draggable key={project.id} draggableId={project.id.toString()} index={index}>
+                                    {(provided) => (
+                                        <div
+                                            className="flex flex-col md:flex-row items-center justify-between bg-gray-100 p-4 rounded-lg shadow-md cursor-move"
+                                            ref={provided.innerRef}
+                                            {...provided.draggableProps}
+                                            {...provided.dragHandleProps}
+                                        >
+                                            {project.image && (
+                                                <div className="mb-4 md:mb-0 md:mr-4">
+                                                    <Image
+                                                        src={project.image}
+                                                        alt={`${project.title} image`}
+                                                        width={100}
+                                                        height={100}
+                                                        className="rounded-lg"
+                                                    />
+                                                </div>
+                                            )}
+                                            <div className="flex-1 mr-10">
+                                                <h3 className="font-NeueMontreal text-xl font-semibold text-hexblack">
+                                                    {project.title}
+                                                </h3>
+                                                <p className="font-SupplyMono text-base text-gray-700">
+                                                {project.description}
+                                                </p>
+                                            </div>
+                                            <div className="flex space-x-10 font-SupplyMono mt-4 md:mt-0">
+                                                {project.githubLink && (
+                                                    <a
+                                                        href={project.githubLink}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="text-hexblack underline"
                                                     >
-                                                        Delete
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        )}
-                                    </Draggable>
-                                ))}
-                                {provided.placeholder}
-                                </tbody>
-                            </table>
-                        )}
-                    </Droppable>
-                </DragDropContext>
-            </div>
+                                                        GitHub
+                                                    </a>
+                                                )}
+                                                {project.liveDemoLink && (
+                                                    <a
+                                                        href={project.liveDemoLink}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="text-hexblack underline"
+                                                    >
+                                                        Live Demo
+                                                    </a>
+                                                )}
+                                                <button
+                                                    onClick={() => handleDeleteProject(project.id)}
+                                                    className="text-red-500 hover:text-red-700"
+                                                >
+                                                    Delete
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
+                                </Draggable>
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
 
             {toastMessage && (
-                <div className="toast-message fixed bottom-4 right-4 bg-hexblack text-hexwhite px-4 py-2 rounded-lg shadow-lg z-50">
+                <div className="fixed bottom-5 right-5 bg-indigo-600 text-white py-3 px-6 rounded-lg shadow-lg toast-message">
                     {toastMessage}
                 </div>
             )}
