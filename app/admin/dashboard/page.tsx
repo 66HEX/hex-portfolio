@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from '@/app/utils/supabaseClient';
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,7 @@ interface Project {
     image: string | null;
     githubLink: string | null;
     liveDemoLink: string | null;
+    order: number;
 }
 
 export default function AdminDashboard() {
@@ -57,7 +59,8 @@ export default function AdminDashboard() {
     const fetchProjects = async () => {
         const { data, error } = await supabase
             .from("projects")
-            .select("*");
+            .select("*")
+            .order("order", { ascending: true }); // Fetch projects ordered by the 'order' field
 
         if (error) {
             console.error("Error fetching projects:", error.message);
@@ -65,10 +68,6 @@ export default function AdminDashboard() {
             setProjects(data || []);
         }
     };
-
-    if (status === "loading") {
-        return <div>Loading...</div>;
-    }
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -103,12 +102,15 @@ export default function AdminDashboard() {
             const publicURLBase = process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL;
             const publicURL = `${publicURLBase}${uploadData.path}`;
 
+            const newOrder = (projects.length > 0 ? Math.max(...projects.map(p => p.order)) : 0) + 1;
+
             const projectWithImage = {
                 title: newProject.title,
                 description: newProject.description,
                 image: publicURL,
                 githubLink: newProject.githubLink,
                 liveDemoLink: newProject.liveDemoLink,
+                order: newOrder // Set the order starting from 1
             };
 
             const { data, error } = await supabase
@@ -194,10 +196,47 @@ export default function AdminDashboard() {
 
     const handleLogOut = async () => {
         try {
-            await signOut({ redirect: false }); // Do not redirect automatically
+            await signOut({ redirect: false });
             router.push("/");
         } catch (error) {
             console.error("Error during sign out:", error);
+        }
+    };
+
+    const handleOnDragEnd = async (result: any) => {
+        const { destination, source } = result;
+
+        if (!destination || destination.index === source.index) {
+            return;
+        }
+
+        const updatedProjects = Array.from(projects);
+        const [movedProject] = updatedProjects.splice(source.index, 1);
+        updatedProjects.splice(destination.index, 0, movedProject);
+
+        updatedProjects.forEach((project, index) => {
+            project.order = index + 1;
+        });
+
+        setProjects(updatedProjects);
+
+        try {
+            for (let i = 0; i < updatedProjects.length; i++) {
+                const { error } = await supabase
+                    .from('projects')
+                    .update({ order: i + 1 })
+                    .eq('id', updatedProjects[i].id);
+
+                if (error) {
+                    throw new Error(error.message);
+                }
+            }
+        } catch (error) {
+            if (error instanceof Error) {
+                console.error("Error updating project order:", error.message);
+            } else {
+                console.error("An unknown error occurred");
+            }
         }
     };
 
@@ -238,9 +277,9 @@ export default function AdminDashboard() {
                     />
                     <input
                         type="file"
-                        name="image"
+                        accept="image/*"
                         onChange={handleFileChange}
-                        className="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-hexblack transition duration-300"
+                        className="w-full border border-gray-300 rounded-lg p-2"
                     />
                     <input
                         type="text"
@@ -271,69 +310,89 @@ export default function AdminDashboard() {
                 <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack mb-6">
                     Project List
                 </h2>
-                <div className="overflow-x-auto">
-                    <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-sm">
-                        <thead>
-                        <tr className="bg-hexblack text-white font-SupplyMono">
-                            <th className="p-4 text-left">Title</th>
-                            <th className="p-4 text-left">Description</th>
-                            <th className="p-4 text-left">Image</th>
-                            <th className="p-4 text-left">GitHub Link</th>
-                            <th className="p-4 text-left">Live Demo Link</th>
-                            <th className="p-4 text-left">Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {projects.map(project => (
-                            <tr key={project.id} className="border-b border-gray-300 font-SupplyMono">
-                                <td className="p-4">{project.title}</td>
-                                <td className="p-4">{project.description}</td>
-                                <td className="p-4">
-                                    {project.image ? (
-                                        <Image
-                                            src={project.image}
-                                            alt={project.title}
-                                            width={100}
-                                            height={100}
-                                            className="object-cover rounded-lg"
-                                        />
-                                    ) : (
-                                        "No Image"
-                                    )}
-                                </td>
-                                <td className="p-4">
-                                    {project.githubLink ? (
-                                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
-                                           className="text-hexblack underline">
-                                            GitHub
-                                        </a>
-                                    ) : (
-                                        "N/A"
-                                    )}
-                                </td>
-                                <td className="p-4">
-                                    {project.liveDemoLink ? (
-                                        <a href={project.liveDemoLink} target="_blank" rel="noopener noreferrer"
-                                           className="text-hexblack underline">
-                                            Live Demo
-                                        </a>
-                                    ) : (
-                                        "N/A"
-                                    )}
-                                </td>
-                                <td className="p-4">
-                                    <button
-                                        onClick={() => handleDeleteProject(project.id)}
-                                        className="text-red-500 hover:text-red-700"
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
-                </div>
+                <DragDropContext onDragEnd={handleOnDragEnd}>
+                    <Droppable droppableId="droppable">
+                        {(provided) => (
+                            <table
+                                className="min-w-full bg-white border border-gray-300 rounded-lg shadow-sm"
+                                ref={provided.innerRef}
+                                {...provided.droppableProps}
+                            >
+                                <thead>
+                                <tr className="bg-hexblack text-white font-SupplyMono">
+                                    <th className="p-4 text-left">Order</th>
+                                    <th className="p-4 text-left">Title</th>
+                                    <th className="p-4 text-left">Description</th>
+                                    <th className="p-4 text-left">Image</th>
+                                    <th className="p-4 text-left">GitHub Link</th>
+                                    <th className="p-4 text-left">Live Demo Link</th>
+                                    <th className="p-4 text-left">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {projects.map((project, index) => (
+                                    <Draggable key={project.id} draggableId={project.id.toString()} index={index}>
+                                        {(provided) => (
+                                            <tr
+                                                ref={provided.innerRef}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                                className="border-b border-gray-300 font-SupplyMono"
+                                            >
+                                                <td className="p-4">{project.order}</td>
+                                                <td className="p-4">{project.title}</td>
+                                                <td className="p-4">{project.description}</td>
+                                                <td className="p-4">
+                                                    {project.image ? (
+                                                        <Image
+                                                            src={project.image}
+                                                            alt={project.title}
+                                                            width={100}
+                                                            height={100}
+                                                            className="object-cover rounded-lg"
+                                                        />
+                                                    ) : (
+                                                        "No Image"
+                                                    )}
+                                                </td>
+                                                <td className="p-4">
+                                                    {project.githubLink ? (
+                                                        <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
+                                                           className="text-hexblack underline">
+                                                            GitHub
+                                                        </a>
+                                                    ) : (
+                                                        "N/A"
+                                                    )}
+                                                </td>
+                                                <td className="p-4">
+                                                    {project.liveDemoLink ? (
+                                                        <a href={project.liveDemoLink} target="_blank" rel="noopener noreferrer"
+                                                           className="text-hexblack underline">
+                                                            Live Demo
+                                                        </a>
+                                                    ) : (
+                                                        "N/A"
+                                                    )}
+                                                </td>
+                                                <td className="p-4">
+                                                    <button
+                                                        onClick={() => handleDeleteProject(project.id)}
+                                                        className="text-red-500 hover:text-red-700"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        )}
+                                    </Draggable>
+                                ))}
+                                {provided.placeholder}
+                                </tbody>
+                            </table>
+                        )}
+                    </Droppable>
+                </DragDropContext>
             </div>
 
             {toastMessage && (
