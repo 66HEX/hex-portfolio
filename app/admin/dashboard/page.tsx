@@ -134,7 +134,6 @@ export default function AdminDashboard() {
                 liveDemoLink: ""
             });
 
-            // Show toast message
             setToastMessage("Project added successfully!");
 
         } catch (error) {
@@ -147,16 +146,49 @@ export default function AdminDashboard() {
     };
 
     const handleDeleteProject = async (id: number) => {
-        const { data, error } = await supabase
-            .from("projects")
-            .delete()
-            .eq('id', id);
+        try {
+            const { data: projectData, error: fetchError } = await supabase
+                .from('projects')
+                .select('image')
+                .eq('id', id)
+                .single();
 
-        if (error) {
-            console.error("Error deleting project:", error.message);
-        } else {
+            if (fetchError) {
+                throw new Error(`Error fetching project data: ${fetchError.message}`);
+            }
+
+            if (!projectData) {
+                throw new Error('Project not found');
+            }
+
+            const imagePath = projectData.image;
+
+            const { error: deleteError } = await supabase
+                .from('projects')
+                .delete()
+                .eq('id', id);
+
+            if (deleteError) {
+                throw new Error(`Error deleting project: ${deleteError.message}`);
+            }
+
+            const imageName = imagePath.split('/').pop();
+            const { error: storageError } = await supabase.storage
+                .from('project-images')
+                .remove([imageName]);
+
+            if (storageError) {
+                throw new Error(`Error deleting image from storage: ${storageError.message}`);
+            }
+
             setProjects(prev => prev.filter(project => project.id !== id));
             setToastMessage("Project deleted successfully!");
+        } catch (error) {
+            if (error instanceof Error) {
+                console.error(error.message);
+            } else {
+                console.error("An unknown error occurred");
+            }
         }
     };
 
