@@ -253,15 +253,15 @@ export default function AdminDashboard() {
                 <Droppable droppableId="projects">
                     {(provided) => (
                         <div
-                            className="w-full max-w-7xl mx-auto bg-white p-8 rounded-2xl shadow-xl space-y-4"
+                            className="w-full max-w-7xl mx-auto bg-white p-4 md:p-8 rounded-2xl shadow-xl space-y-4"
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                         >
-                            <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack">
+                            <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack mt-5 md:mt-0">
                                 Add New Project
                             </h2>
 
-                            <div className="my-8 bg-gray-100 p-8 rounded-2xl shadow-xl">
+                            <div className="my-8 bg-hexwhite p-8 rounded-2xl shadow-xl">
                                 <div
                                     className="mt-4 flex flex-wrap md:flex-nowrap justify-between items-center space-y-4 md:space-y-0 font-SupplyMono">
                                     <input
@@ -322,7 +322,7 @@ export default function AdminDashboard() {
                                 <Draggable key={project.id} draggableId={project.id.toString()} index={index}>
                                     {(provided) => (
                                         <div
-                                            className="flex flex-col md:flex-row items-center justify-between bg-gray-100 p-4 rounded-lg shadow-md cursor-move"
+                                            className="flex flex-col md:flex-row items-center justify-between bg-hexwhite p-4 rounded-lg shadow-md cursor-move"
                                             ref={provided.innerRef}
                                             {...provided.draggableProps}
                                             {...provided.dragHandleProps}
