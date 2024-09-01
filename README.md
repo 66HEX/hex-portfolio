@@ -7,11 +7,11 @@
 HEX Portfolio is a portfolio website designed to highlight various projects and skills with a focus on modern web technologies and animations. The website is structured into six main sections:
 
 - **Home Page**: Features a Stripe-style animation powered by a minified WebGL library, creating an engaging and dynamic landing experience.
-- **About**: Provides background information and details about me.
-- **Services**: Describes the range of services I offer.
-- **Works**: Showcases the portfolio projects. This section is connected to a backend system where I manage the project listings through an admin dashboard. Access to this dashboard is secured via NextAuth, and project data is handled using Supabase.
-- **Contact**: Contains a contact button that copies my email address to the clipboard. The section is equipped with a GSAP-animated popup that provides feedback when the email is copied.
-- **Admin Dashboard**: A protected area for managing and updating project listings, accessible only with proper authentication.
+- **About**: This section provides background information about me, detailing my professional journey, skills, and experiences. The About section is designed to offer visitors a personal touch and a deeper understanding of who I am and what motivates me in my professional endeavors.
+- **Services**: This section outlines the range of services I offer, emphasizing the expertise and solutions I can provide to clients. The Services section is crafted to showcase my capabilities and the value I bring to potential clients, making it easier for them to understand how my services can meet their requirements.
+- **Works**: The Admin Dashboard is equipped with a drag-and-drop feature, allowing dynamic reordering of projects to reflect changes in their display order on the main site. The dashboard is secured via NextAuth for authentication, and project data is managed using Supabase for reliable storage and retrieval.
+- **Contact**: Contains a contact button that copies my email address to the clipboard. The section is equipped with a GSAP-animated popup that provides visual feedback when the email is copied, ensuring a smooth and interactive user experience.
+- **Admin Dashboard**: A protected area for managing and updating project listings, accessible only with proper authentication. The Admin Dashboard includes a drag-and-drop interface that allows admins to dynamically change the order of projects, which is reflected immediately on the main site. This functionality provides a user-friendly way to organize and prioritize project displays without needing to manually update the order in the database. The dashboard integrates with Supabase for data management and storage.
 
 The entire website is animated using GSAP and Blobity, ensuring a smooth and visually appealing user experience.
 
