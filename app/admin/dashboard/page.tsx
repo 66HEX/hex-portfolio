@@ -241,76 +241,13 @@ export default function AdminDashboard() {
     };
 
     return (
-        <section className="w-screen p-4 md:p-8 lg:p-12 xl:p-16 bg-hexwhite flex flex-col items-center">
+        <section className="w-screen min-h-screen p-4 md:p-8 lg:p-12 xl:p-16 bg-hexwhite flex flex-col items-center">
             <button
                 className="absolute top-5 left-5 text-hexblack text-base font-SupplyMono hover:underline cursor-pointer"
                 onClick={handleLogOut}
             >
                 ← Log Out
             </button>
-            <div className="w-full max-w-7xl mx-auto flex justify-center items-center mt-12 md:mt-0">
-                <h1 className="font-NeueMontreal text-4xl md:text-6xl lg:text-7xl font-black text-hexblack tracking-tight leading-none uppercase">
-                    Admin Dashboard
-                </h1>
-            </div>
-
-            <div className="w-full max-w-7xl mx-auto my-8 bg-white p-8 rounded-2xl shadow-xl">
-                <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack">
-                    Add New Project
-                </h2>
-                <div
-                    className="mt-4 flex flex-wrap md:flex-nowrap justify-between items-center space-y-4 md:space-y-0 font-SupplyMono">
-                    <input
-                        type="text"
-                        name="title"
-                        value={newProject.title}
-                        onChange={handleInputChange}
-                        placeholder="Project Title"
-                        className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack"
-                    />
-                    <input
-                        type="text"
-                        name="githubLink"
-                        value={newProject.githubLink}
-                        onChange={handleInputChange}
-                        placeholder="GitHub Link"
-                        className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack md:ml-4"
-                    />
-                    <input
-                        type="text"
-                        name="liveDemoLink"
-                        value={newProject.liveDemoLink}
-                        onChange={handleInputChange}
-                        placeholder="Live Demo Link"
-                        className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack md:ml-4"
-                    />
-                    <input
-                        type="file"
-                        name="image"
-                        onChange={handleFileChange}
-                        className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack md:ml-4"
-                    />
-                </div>
-                <div className="mt-4 font-SupplyMono">
-        <textarea
-            name="description"
-            value={newProject.description}
-            onChange={handleInputChange}
-            placeholder="Project Description"
-            className="w-full px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack"
-        />
-                </div>
-
-                <div className="mt-6 flex justify-end">
-                    <button
-                        onClick={handleAddProject}
-                        className="px-6 py-2 text-lg font-bold font-NeueMontreal text-white bg-hexblack rounded-lg hover:bg-hexgray focus:outline-none"
-                    >
-                        Add Project
-                    </button>
-                </div>
-            </div>
-
 
             <DragDropContext onDragEnd={handleOnDragEnd}>
                 <Droppable droppableId="projects">
@@ -320,9 +257,67 @@ export default function AdminDashboard() {
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                         >
+                            <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack">
+                                Add New Project
+                            </h2>
+
+                            <div className="my-8 bg-gray-100 p-8 rounded-2xl shadow-xl">
+                                <div
+                                    className="mt-4 flex flex-wrap md:flex-nowrap justify-between items-center space-y-4 md:space-y-0 font-SupplyMono">
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        value={newProject.title}
+                                        onChange={handleInputChange}
+                                        placeholder="Project Title"
+                                        className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack"
+                                    />
+                                    <input
+                                        type="text"
+                                        name="githubLink"
+                                        value={newProject.githubLink}
+                                        onChange={handleInputChange}
+                                        placeholder="GitHub Link"
+                                        className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack md:ml-4"
+                                    />
+                                    <input
+                                        type="text"
+                                        name="liveDemoLink"
+                                        value={newProject.liveDemoLink}
+                                        onChange={handleInputChange}
+                                        placeholder="Live Demo Link"
+                                        className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack md:ml-4"
+                                    />
+                                    <input
+                                        type="file"
+                                        name="image"
+                                        onChange={handleFileChange}
+                                        className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack md:ml-4"
+                                    />
+                                </div>
+                                <div className="mt-4 font-SupplyMono">
+                                    <textarea
+                                        name="description"
+                                        value={newProject.description}
+                                        onChange={handleInputChange}
+                                        placeholder="Project Description"
+                                        className="w-full px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack"
+                                    />
+                                </div>
+
+                                <div className="mt-6 flex justify-center md:justify-end">
+                                    <button
+                                        onClick={handleAddProject}
+                                        className="px-6 py-2 text-lg font-bold font-NeueMontreal text-white bg-hexblack rounded-lg hover:bg-hexgray focus:outline-none"
+                                    >
+                                        Add Project
+                                    </button>
+                                </div>
+                            </div>
                             <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack mb-6">
                                 Project list
                             </h2>
+
                             {projects.map((project, index) => (
                                 <Draggable key={project.id} draggableId={project.id.toString()} index={index}>
                                     {(provided) => (
@@ -343,21 +338,21 @@ export default function AdminDashboard() {
                                                     />
                                                 </div>
                                             )}
-                                            <div className="flex-1 mr-10">
+                                            <div className="flex-1 md:mr-10">
                                                 <h3 className="font-NeueMontreal text-xl font-semibold text-hexblack">
                                                     {project.title}
                                                 </h3>
-                                                <p className="font-SupplyMono text-base text-gray-700">
-                                                {project.description}
+                                                <p className="font-SupplyMono text-base text-gray-700 hidden xl:block">
+                                                    {project.description}
                                                 </p>
                                             </div>
-                                            <div className="flex space-x-10 font-SupplyMono mt-4 md:mt-0">
+                                            <div className="flex md:space-x-10 font-SupplyMono mt-4 md:mt-0">
                                                 {project.githubLink && (
                                                     <a
                                                         href={project.githubLink}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-hexblack underline"
+                                                        className="text-hexblack underline hidden md:block"
                                                     >
                                                         GitHub
                                                     </a>
@@ -367,7 +362,7 @@ export default function AdminDashboard() {
                                                         href={project.liveDemoLink}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="text-hexblack underline"
+                                                        className="text-hexblack underline hidden md:block"
                                                     >
                                                         Live Demo
                                                     </a>
@@ -384,16 +379,20 @@ export default function AdminDashboard() {
                                 </Draggable>
                             ))}
                             {provided.placeholder}
+
                         </div>
                     )}
                 </Droppable>
             </DragDropContext>
 
             {toastMessage && (
-                <div className="fixed bottom-5 right-5 bg-indigo-600 text-white py-3 px-6 rounded-lg shadow-lg toast-message">
+                <div
+                    className="fixed bottom-5 right-5 bg-indigo-600 text-white py-3 px-6 rounded-lg shadow-lg toast-message">
                     {toastMessage}
                 </div>
             )}
         </section>
+
+
     );
 }
