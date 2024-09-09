@@ -1,11 +1,23 @@
-# Lean Bulls Gym
+# HEX Portfolio
 
-**Lean Bulls Gym** is a modern, responsive website for Lean Bulls Gym, built with React and TypeScript, featuring advanced animations powered by GSAP (GreenSock Animation Platform). The website provides an immersive experience for visitors and includes sections for pricing, gallery, contact information, and an animated preloader.
+**HEX Portfolio** is a modern web development project that showcases a portfolio website built with cutting-edge technologies like Next.js, React, GSAP, and TailwindCSS. This repository contains the source code for the website, which includes sections like About, Services, and more, all with smooth animations and responsive design.
+
+## Project Overview
+
+HEX Portfolio is a portfolio website designed to highlight various projects and skills with a focus on modern web technologies and animations. The website is structured into six main sections:
+
+- **Home Page**: Features a Stripe-style animation powered by a minified WebGL library, creating an engaging and dynamic landing experience.
+- **About**: This section provides background information about me, detailing my professional journey, skills, and experiences. The About section is designed to offer visitors a personal touch and a deeper understanding of who I am and what motivates me in my professional endeavors.
+- **Services**: This section outlines the range of services I offer, emphasizing the expertise and solutions I can provide to clients. The Services section is crafted to showcase my capabilities and the value I bring to potential clients, making it easier for them to understand how my services can meet their requirements.
+- **Works**: The Admin Dashboard is equipped with a drag-and-drop feature, allowing dynamic reordering of projects to reflect changes in their display order on the main site. The dashboard is secured via NextAuth for authentication, and project data is managed using Supabase for reliable storage and retrieval.
+- **Contact**: Contains a contact button that copies my email address to the clipboard. The section is equipped with a GSAP-animated popup that provides visual feedback when the email is copied, ensuring a smooth and interactive user experience.
+- **Admin Dashboard**: A protected area for managing and updating project listings, accessible only with proper authentication. The Admin Dashboard includes a drag-and-drop interface that allows admins to dynamically change the order of projects, which is reflected immediately on the main site. This functionality provides a user-friendly way to organize and prioritize project displays without needing to manually update the order in the database. The dashboard integrates with Supabase for data management and storage.
+
+The entire website is animated using GSAP and Blobity, ensuring a smooth and visually appealing user experience.
 
 ## Table of Contents
 
 - [Demo](#demo)
-- [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -13,59 +25,28 @@
 
 ## Demo
 
-You can view a live demo of the project here: [Live Demo](https://lean-bulls-gym.vercel.app/)
-
-## Features
-
-- **Preloader Animation**: 
-  - A custom animated preloader sequence featuring three distinct gym logos (top, center, bottom).
-  - Each logo appears in sequence with smooth scaling and fading effects using GSAP.
-
-- **Responsive Design**: 
-  - Fully responsive layout that adapts to different devices and screen sizes.
-  - Ensures a consistent and user-friendly experience across desktops, tablets, and mobile devices.
-
-- **Smooth Scrolling**: 
-  - Integrated **Lenis** library for seamless, smooth scrolling between sections.
-  - Enhances user experience by providing a fluid navigation experience.
-
-- **GSAP Animations**: 
-  - Advanced animations using GSAP for dynamic transitions and interactive components.
-  - Includes animated gallery elements, pricing cards, and more.
-
-- **Interactive Pricing Section**: 
-  - Displays multiple subscription plans with detailed descriptions and features.
-  - Interactive cards with hover effects to highlight different pricing options.
-
-- **Lightbox Gallery**: 
-  - A gallery section where users can click on images to view larger versions in a lightbox.
-  - Includes smooth transitions and click-to-close functionality with GSAP animations.
-
-- **Footer with Social Media Links**: 
-  - Footer section featuring links to social media profiles (Facebook, Instagram).
-  - Contains contact information, business hours, and additional branding elements.
-
-- **Clean, Modern Aesthetics**: 
-  - Designed with a minimal yet powerful aesthetic, using custom fonts and a tailored color scheme.
-  - Focuses on a sleek and professional appearance that aligns with the gym's brand.
-
+You can view a live demo of the project here: [Live Demo](https://www.hexthecoder.pl/)
 
 ## Technologies Used
 
-- **React**: Frontend framework for building UI components.
-- **TypeScript**: Ensures static type checking and a more reliable codebase.
-- **GSAP**: GreenSock Animation Platform for smooth and performant animations.
-- **TailwindCSS**: Utility-first CSS framework for rapid UI development.
-- **FontAwesome**: For social media icons and additional UI elements. 
-- **Lenis**: Smooth scrolling library for seamless navigation between sections.
+- **Next.js**: A powerful React framework for server-rendered applications.
+- **React**: A JavaScript library for building user interfaces.
+- **GSAP**: A robust animation library used for creating smooth and performant animations.
+- **TailwindCSS**: A utility-first CSS framework for rapidly building custom designs.
+- **Blobity**: A small library for creating fun cursor animations.
+- **Kinet**: A library for mouse-follow animations.
+- **Lodash**: A utility library delivering consistency, customization, and performance.
+- **Sharp**: An image processing library used for optimizing images.
+- **Supabase**: An image processing library used for optimizing images.
+- **NextAuth**: A flexible authentication library for Next.js applications.
 
 ## Installation
 
 To get started with this project, clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/66HEX/lean-bulls-gym.git
-cd lean-bulls-gym
+git clone https://github.com/66HEX/hexthecoder.git
+cd hexthecoder
 npm install
 ```
 
