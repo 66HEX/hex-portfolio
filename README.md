@@ -45,7 +45,7 @@ You can view a live demo of the project here: [Live Demo](https://www.hexthecode
 To get started with this project, clone the repository and install the dependencies:
 
 ```bash
-git clone https://github.com/66HEX/hexthecoder.git
+git clone https://github.com/66HEX/hex-portfolio.git
 cd hexthecoder
 npm install
 ```
