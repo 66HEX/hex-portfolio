@@ -46,7 +46,7 @@ To get started with this project, clone the repository and install the dependenc
 
 ```bash
 git clone https://github.com/66HEX/hex-portfolio.git
-cd hexthecoder
+cd hex-portfolio
 npm install
 ```
 
