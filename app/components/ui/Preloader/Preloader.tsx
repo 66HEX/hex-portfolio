@@ -51,7 +51,7 @@ const Preloader: React.FC = () => {
         <div>
             <div
                 id="preloader"
-                className="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-svh z-[100] bg-hexgreen2"
+                className="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-svh z-[100] bg-hexgreen1"
             >
                 <Logo className="fill-hexwhite z-100 logo opacity-0" alt="HEX Logo" height={300} width={300}/>
             </div>
