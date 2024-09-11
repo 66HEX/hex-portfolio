@@ -9,12 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        hexblack: '#181818',
-        hexwhite: '#E4E4DF',
-        hexgreen1: '#043D5D',
-        hexgreen2: '#032E46',
-        hexgreen3: '#23B684',
-        hexgreen4: '#0F595E',
+        hexblack: '#121212',
+        hexwhite: '#FFFFFF',
+        hexgreen1: '#022233',
+        hexgreen2: '#032B41',
+        hexgreen3: '#0C4446',
+        hexgreen4: '#1A8E68',
       },
       fontFamily: {
         NeueMontreal: 'NeueMontreal',
@@ -24,10 +24,7 @@ const config: Config = {
         '12xl': '10rem',
         '15xl': '15rem',
         '20xl': '20rem',
-      },
-      backgroundImage: {
-        'vignette': 'radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.1) 100%)',
-      },
+      }
     },
   },
   plugins: [],

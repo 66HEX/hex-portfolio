@@ -69,10 +69,10 @@ export default function ContactSection() {
     return (
         <section id="contact" className="w-screen p-4 md:p-8 lg:p-12 xl:p-16 overflow-hidden bg-hexwhite">
             <div className="h-full w-full bg-hexgreen3 flex flex-col md:flex-row justify-between items-center p-6 lg:p-8 rounded-2xl gap-6 md:gap-0">
-                <h2 className="font-NeueMontreal text-4xl md:text-5xl lg:text-7xl font-black uppercase text-center md:text-left">
+                <h2 className="text-hexwhite font-NeueMontreal text-4xl md:text-5xl lg:text-7xl font-black uppercase text-center md:text-left">
                     Let&#8217;s Work Together
                 </h2>
-                <p className="font-SupplyMono text-lg lg:text-xl text-center md:text-left p-0 md:p-6 lg:p-8 md:mx-5 xl:mr-20">
+                <p className="text-hexwhite font-SupplyMono text-lg lg:text-xl text-center md:text-left p-0 md:p-6 lg:p-8 md:mx-5 xl:mr-20">
                     I&#8217;m available for freelance projects. Get in touch!
                 </p>
                 <button
