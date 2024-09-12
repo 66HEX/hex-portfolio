@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'NeueMontreal';
-    src: url('PPNeueMontreal-Variable (1).woff2') format('woff2'),
-    url('PPNeueMontreal-Variable (2).woff') format('woff');
+    src: url('PPNeueMontreal-Variable.woff2') format('woff2'),
+    url('PPNeueMontreal-Variable.woff') format('woff');
     font-weight: 100 900;
     font-style: normal;
 }
