@@ -10,7 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         hexblack: '#1C1F23',
-        hexwhite: '#FFFFFF',
+        hexwhite: '#F5F5F5',
         hexgreen1: '#022233',
         hexgreen2: '#032B41',
         hexgreen3: '#0C4446',
