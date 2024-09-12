@@ -54,11 +54,11 @@ export default function ServicesSection() {
             </h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-12 max-w-7xl">
-                <div className="service-card bg-hexwhite text-hexblack p-6 lg:p-8 rounded-2xl shadow-lg" data-blobity>
+                <div className="service-card bg-hexwhite text-hexblack p-6 lg:p-8 rounded-2xl shadow-2xl" data-blobity>
                     <h2 className="font-bold text-2xl lg:text-3xl mb-4">Custom Web Design</h2>
                     <p className="font-SupplyMono text-lg">Crafting unique and responsive designs tailored to your brand.</p>
                 </div>
-                <div className="service-card bg-hexwhite text-hexblack p-6 lg:p-8 rounded-2xl shadow-lg" data-blobity>
+                <div className="service-card bg-hexwhite text-hexblack p-6 lg:p-8 rounded-2xl shadow-2xl" data-blobity>
                     <h2 className="font-bold text-2xl lg:text-3xl mb-4">Front-End Development</h2>
                     <p className="font-SupplyMono text-lg">Building dynamic and interactive user interfaces with the latest technologies.</p>
                 </div>
