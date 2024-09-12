@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        hexblack: '#121212',
+        hexblack: '#1C1F23',
         hexwhite: '#FFFFFF',
         hexgreen1: '#022233',
         hexgreen2: '#032B41',
