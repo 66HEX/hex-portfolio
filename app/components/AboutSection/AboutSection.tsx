@@ -53,7 +53,12 @@ export default function AboutSection() {
             <div className="flex flex-col lg:flex-row-reverse items-center lg:items-start gap-12 relative z-10">
                 <div className="w-full lg:w-1/2 flex items-center justify-center">
                     <div className="profile-img w-full h-auto rounded-2xl shadow-2xl overflow-hidden">
-                        <Image src={ProfilePic} alt="Profile Picture" className="object-cover w-full h-full" />
+                        <Image
+                            src={ProfilePic}
+                            alt="Profile Picture"
+                            className="object-cover w-full h-full"
+                            priority
+                        />
                     </div>
                 </div>
                 <div className="about-text w-full lg:w-1/2 text-center lg:text-left p-6 lg:p-8 shadow-2xl rounded-2xl">
