@@ -72,7 +72,7 @@ export default function ContactSection() {
                 <h2 className="text-hexwhite font-GeistSans text-4xl md:text-5xl lg:text-7xl font-black uppercase text-center md:text-left">
                     Let&#8217;s Work Together
                 </h2>
-                <p className="text-hexwhite font-GeistMono text-base font-medium text-center md:text-left p-0 md:p-6 lg:p-8 md:mx-5 xl:mr-20">
+                <p className="text-hexwhite font-GeistMono text-base font-medium text-center md:text-left p-0 md:p-6 lg:p-8 md:mx-5 xl:mx-10">
                     I&#8217;m available for freelance projects. Let’s connect and create something great together!
                 </p>
                 <button
