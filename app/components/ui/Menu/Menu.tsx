@@ -29,7 +29,7 @@ const Menu: React.FC = () => {
             duration: 0.3,
             width: isExpanded ? '20rem' : '4rem',
             height: isExpanded ? '30rem' : '4rem',
-            borderRadius: isExpanded ? '1rem' : '5rem',
+            borderRadius: isExpanded ? '1rem' : '1rem',
             ease: 'power2.inOut',
         });
 
@@ -96,26 +96,26 @@ const Menu: React.FC = () => {
     return (
         <nav
             ref={navRef}
-            className="fixed top-2 right-2 h-16 w-16 bg-hexgreen3 rounded-full z-40"
+            className="fixed top-2 right-2 h-16 w-16 bg-hexgreen3 rounded-2xl z-40"
         >
             <button
                 id="toggleButton"
                 aria-expanded={isToggled}
                 aria-controls="menu"
                 aria-label="menu button"
-                className="absolute top-0 right-0 h-16 w-16 rounded-full bg-hexgreen3 cursor-pointer z-50 "
+                className="absolute top-0 right-0 h-16 w-16 rounded-2xl bg-hexgreen3 cursor-pointer z-50 "
                 onClick={handleToggle}
                 ref={toggleButtonRef}
             >
                 <div
                     ref={toggleButtonLine1Ref}
                     id="toggleButtonLine1"
-                    className="absolute h-1 bg-hexwhite w-1/2 top-[42.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full"
+                    className="absolute h-1 bg-hexwhite w-1/2 top-[42.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-2xl"
                 ></div>
                 <div
                     ref={toggleButtonLine2Ref}
                     id="toggleButtonLine2"
-                    className="absolute h-1 bg-hexwhite w-1/2 top-[57.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full"
+                    className="absolute h-1 bg-hexwhite w-1/2 top-[57.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-2xl"
                 ></div>
             </button>
             <ul
