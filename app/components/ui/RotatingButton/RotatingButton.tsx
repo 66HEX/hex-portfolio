@@ -27,9 +27,9 @@ const Button: React.FC = () => {
     return (
         <div
             style={{
-                width: '140px',
-                height: '140px',
-                borderRadius: '70px',
+                width: '150px',
+                height: '150px',
+                borderRadius: '75px',
             }}
             className="relative flex justify-center items-center mt-5 md:mt-0"
         >

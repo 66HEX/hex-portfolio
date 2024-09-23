@@ -22,7 +22,7 @@ html,body {
 .text span {
     position: absolute;
     left: 50%;
-    transform-origin: 0 70px;
+    transform-origin: 0 75px;
     transform: translateX(-50%);
 }
 
