@@ -41,8 +41,8 @@ export default function HomeSection() {
         <section id="home" className="h-svh w-screen p-4 md:p-8 lg:p-12 xl:p-16 overflow-hidden bg-hexwhite relative z-10">
             <div className="h-full w-full relative flex justify-center items-center flex-col gap-10 scrolltrigger">
                 <GradientCanvas />
-                <Logo className="h-14 w-auto fill-hexwhite absolute top-5 left-5" alt="Logo" data-blobity />
-                <h1 className="font-GeistSans text-8xl md:text-12xl lg:text-12xl font-black text-hexwhite leading-none uppercase text-center z-10">
+                <Logo className="h-14 w-auto fill-hexwhite absolute top-4 left-4" alt="Logo" data-blobity />
+                <h1 className="font-GeistSans mt-12 text-8xl md:text-12xl lg:text-12xl font-black text-hexwhite leading-none uppercase text-center z-10">
                     <span className="block md:block lg:block">hex</span>
                     <span className="block md:block lg:inline">the </span>
                     <span className="block md:block lg:inline">coder</span>
@@ -50,10 +50,10 @@ export default function HomeSection() {
                 <div onClick={(event) => handleClick(event, "services")}>
                     <RotatingButton />
                 </div>
-                <p className="font-GeistMono text-hexwhite font-medium absolute bottom-5 right-5">
+                <p className="font-GeistMono text-hexwhite font-medium absolute bottom-4 right-4">
                     Available for freelance work
                 </p>
-                <p className="font-GeistMono text-hexwhite font-medium absolute bottom-5 left-5 hidden md:block">
+                <p className="font-GeistMono text-hexwhite font-medium absolute bottom-4 left-4 hidden md:block">
                     (Web designer & developer)
                 </p>
             </div>

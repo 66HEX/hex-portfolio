@@ -61,7 +61,7 @@ export default function AboutSection() {
                     </div>
                 </div>
                 <div className="about-text w-full lg:w-1/2 text-center lg:text-left p-6 lg:p-8">
-                    <h1 className="font-GeistSans text-7xl md:text-10xl lg:text-10xl font-black text-hexblack leading-none uppercase mb-4">
+                    <h1 className="font-GeistSans text-7xl md:text-10xl lg:text-10xl font-black text-hexblack leading-none uppercase mb-8">
                         About
                     </h1>
                     <p className="font-GeistMono font-medium text-hexblack text-base leading-relaxed mb-4 text-justify">
