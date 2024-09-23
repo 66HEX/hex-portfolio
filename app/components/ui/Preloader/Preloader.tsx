@@ -5,7 +5,6 @@ import Logo from '@/app/assets/svg/hex-logo.svg';
 
 const Preloader: React.FC = () => {
     useEffect(() => {
-
         const logo = document.querySelector(".logo") as HTMLElement;
         if (logo) {
             logo.style.transform = 'scale(0)';
@@ -17,16 +16,16 @@ const Preloader: React.FC = () => {
         const tl = gsap.timeline({ paused: false });
 
         tl
-            .to({}, { duration: 0.5 })
+            .to({}, { duration: 0.3 })
             .to(".logo", {
-                duration: 1,
+                duration: 0.7,
                 scale: 1,
                 opacity: 1,
                 ease: "power3.out",
             })
-            .to({}, { duration: 0.5 }) // Pause to keep the logo visible
+            .to({}, { duration: 0.3 })
             .to(".logo", {
-                duration: 1,
+                duration: 0.7,
                 scale: 0,
                 opacity: 0,
                 ease: "power3.in",
@@ -51,7 +50,7 @@ const Preloader: React.FC = () => {
         <div>
             <div
                 id="preloader"
-                className="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-svh z-[100] bg-hexgreen1"
+                className="fixed top-0 left-0 flex flex-col items-center justify-center w-full h-svh z-[100] bg-hexgreen3"
             >
                 <Logo className="fill-hexwhite z-100 logo opacity-0" alt="HEX Logo" height={300} width={300}/>
             </div>

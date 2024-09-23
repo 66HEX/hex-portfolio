@@ -64,13 +64,13 @@ export default function AboutSection() {
                     <h1 className="font-GeistSans text-7xl md:text-10xl lg:text-10xl font-black text-hexblack leading-none uppercase mb-4">
                         About
                     </h1>
-                    <p className="font-GeistMono text-hexblack text-base leading-relaxed mb-4 text-justify">
+                    <p className="font-GeistMono font-medium text-hexblack text-base leading-relaxed mb-4 text-justify">
                         I am Marek Jóźwiak, a web developer with a background in electronics and production management. My education and experience have equipped me with strong analytical skills, applied in both front-end and back-end development to deliver high-quality, scalable solutions.
                     </p>
-                    <p className="font-GeistMono text-hexblack text-base leading-relaxed mb-4 text-justify">
+                    <p className="font-GeistMono font-medium text-hexblack text-base leading-relaxed mb-4 text-justify">
                         Before web development, I served as Deputy Production Manager, which enhanced my leadership and communication skills and deepened my understanding of technical processes. I excel at working under pressure and ensuring smooth project execution.
                     </p>
-                    <p className="font-GeistMono text-hexblack text-base leading-relaxed mb-4 text-justify">
+                    <p className="font-GeistMono font-medium text-hexblack text-base leading-relaxed mb-4 text-justify">
                         I am committed to continuous learning and staying updated with the latest web technologies to provide innovative, user-friendly solutions.
                     </p>
                 </div>

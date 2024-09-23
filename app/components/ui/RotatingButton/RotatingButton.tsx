@@ -47,7 +47,7 @@ const Button: React.FC = () => {
                 style={{
                     animation: 'textRotation 8s linear infinite',
                 }}
-                className="text absolute h-full w-full text-hexwhite text-xl font-SupplyMono" ref={textRef}>
+                className="text absolute h-full w-full text-hexwhite text-xl font-medium font-SupplyMono" ref={textRef}>
                 <p>services•services•</p>
             </div>
         </div>

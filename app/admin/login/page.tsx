@@ -46,7 +46,7 @@ const AdminLogin = () => {
                     <div>
                         <label
                             htmlFor="username"
-                            className="block text-base font-GeistMono text-hexblack mb-2"
+                            className="block text-base font-medium font-GeistMono text-hexblack mb-2"
                         >
                             Username
                         </label>
@@ -57,13 +57,13 @@ const AdminLogin = () => {
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             required
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-hexblack focus:border-hexblack font-GeistMono"
+                            className="w-full px-4 py-2 border font-medium border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-hexblack focus:border-hexblack font-GeistMono"
                         />
                     </div>
                     <div>
                         <label
                             htmlFor="password"
-                            className="block text-base font-GeistMono text-hexblack mb-2"
+                            className="block text-base font-medium font-GeistMono text-hexblack mb-2"
                         >
                             Password
                         </label>
@@ -74,13 +74,13 @@ const AdminLogin = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-hexblack focus:border-hexblack font-GeistMono mb-4"
+                            className="w-full px-4 py-2 border font-medium border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-hexblack focus:border-hexblack font-GeistMono mb-4"
                         />
                     </div>
                     {error && <p className="text-red-500 text-center">{error}</p>}
                     <button
                         type="submit"
-                        className="w-full py-2 px-4 bg-hexgreen1 text-white font-bold rounded-lg shadow-md hover:bg-hexgreen2 focus:outline-none focus:ring-2 focus:ring-hexblack font-GeistSans"
+                        className="w-full py-2 px-4 bg-hexgreen1 text-xl text-white font-bold rounded-lg shadow-md hover:bg-hexgreen2 focus:outline-none focus:ring-2 focus:ring-hexblack font-GeistSans"
                     >
                         Log In
                     </button>

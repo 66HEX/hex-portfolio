@@ -96,14 +96,14 @@ const Menu: React.FC = () => {
     return (
         <nav
             ref={navRef}
-            className="fixed top-5 right-5 h-16 w-16 bg-hexgreen1 rounded-full z-40"
+            className="fixed top-2 right-2 h-16 w-16 bg-hexgreen3 rounded-full z-40"
         >
             <button
                 id="toggleButton"
                 aria-expanded={isToggled}
                 aria-controls="menu"
                 aria-label="menu button"
-                className="absolute top-0 right-0 h-16 w-16 rounded-full bg-hexgreen3 cursor-pointer z-50 drop-shadow-2xl"
+                className="absolute top-0 right-0 h-16 w-16 rounded-full bg-hexgreen3 cursor-pointer z-50 "
                 onClick={handleToggle}
                 ref={toggleButtonRef}
             >
@@ -120,7 +120,7 @@ const Menu: React.FC = () => {
             </button>
             <ul
                 id="menu"
-                className="h-full w-full flex flex-col items-center justify-start gap-8 p-5 opacity-0 invisible drop-shadow-2xl"
+                className="h-full w-full flex flex-col items-center justify-start gap-4 p-5 opacity-0 invisible drop-shadow-2xl"
                 ref={navMenuRef}
                 aria-hidden={!isToggled}
             >

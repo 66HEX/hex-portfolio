@@ -387,7 +387,7 @@ export default function AdminDashboard() {
 
             {toastMessage && (
                 <div
-                    className="toast-message fixed bottom-4 right-4 bg-hexblack text-hexwhite px-4 py-2 rounded-lg shadow-lg z-50 font-GeistMono">
+                    className="toast-message fixed bottom-4 right-4 bg-hexblack text-hexwhite px-4 py-2 rounded-lg shadow-lg z-50 font-GeistMono font-medium">
                     {toastMessage}
                 </div>
             )}

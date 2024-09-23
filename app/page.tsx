@@ -13,6 +13,7 @@ import ServicesSection from "@/app/components/ServicesSection/ServicesSection";
 import WorksSection from "@/app/components/WorksSection/WorksSection";
 import ContactSection from "@/app/components/ContactSection/ContactSection";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {

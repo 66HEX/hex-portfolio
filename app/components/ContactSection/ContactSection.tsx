@@ -72,18 +72,18 @@ export default function ContactSection() {
                 <h2 className="text-hexwhite font-GeistSans text-4xl md:text-5xl lg:text-7xl font-black uppercase text-center md:text-left">
                     Let&#8217;s Work Together
                 </h2>
-                <p className="text-hexwhite font-GeistMono text-base text-center md:text-left p-0 md:p-6 lg:p-8 md:mx-5 xl:mr-20">
-                    I&#8217;m available for freelance projects. Get in touch!
+                <p className="text-hexwhite font-GeistMono text-base font-medium text-center md:text-left p-0 md:p-6 lg:p-8 md:mx-5 xl:mr-20">
+                    I&#8217;m available for freelance projects. Let’s connect and create something great together!
                 </p>
                 <button
                     onClick={handleCopyEmail}
-                    className="px-8 py-4 w-full md:w-72 bg-hexblack text-hexwhite font-semibold text-xl md:text-2xl font-GeistSans rounded-2xl shadow-lg"
+                    className="px-8 py-4 w-full md:w-80 bg-hexblack text-hexwhite font-semibold text-xl md:text-2xl font-GeistSans rounded-2xl shadow-lg"
                 >
                     Contact Me
                 </button>
             </div>
             {showMessage && (
-                <div className="toast-message fixed bottom-4 right-4 bg-hexblack text-hexwhite px-4 py-2 rounded-lg shadow-lg z-50 font-GeistMono">
+                <div className="toast-message font-medium fixed bottom-4 right-4 bg-hexblack text-hexwhite px-4 py-2 rounded-lg shadow-lg z-50 font-GeistMono">
                     Email copied to clipboard!
                 </div>
             )}

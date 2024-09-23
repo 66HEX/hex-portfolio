@@ -50,10 +50,10 @@ export default function HomeSection() {
                 <div onClick={(event) => handleClick(event, "services")}>
                     <RotatingButton />
                 </div>
-                <p className="font-GeistMono text-hexwhite absolute bottom-5 right-5">
+                <p className="font-GeistMono text-hexwhite font-medium absolute bottom-5 right-5">
                     Available for freelance work
                 </p>
-                <p className="font-GeistMono text-hexwhite absolute bottom-5 left-5 hidden md:block">
+                <p className="font-GeistMono text-hexwhite font-medium absolute bottom-5 left-5 hidden md:block">
                     (Web designer & developer)
                 </p>
             </div>

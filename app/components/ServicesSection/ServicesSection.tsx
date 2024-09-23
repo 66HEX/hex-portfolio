@@ -91,7 +91,7 @@ export default function ServicesSection() {
                     <div key={index} className="service-card bg-hexwhite text-hexblack p-6 md:p-8 rounded-2xl shadow-2xl flex flex-col items-center" data-blobity>
                         {service.icon}
                         <h2 className="font-bold text-2xl mb-2 text-center font-GeistSans">{service.title}</h2>
-                        <p className="font-GeistMono text-base text-center">{service.description}</p>
+                        <p className="font-GeistMono text-base text-center leading-relaxed font-medium">{service.description}</p>
                     </div>
                 ))}
             </div>
