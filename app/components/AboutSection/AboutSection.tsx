@@ -60,7 +60,7 @@ export default function AboutSection() {
                         />
                     </div>
                 </div>
-                <div className="about-text w-full lg:w-1/2 text-center lg:text-left p-6 lg:p-8 shadow-2xl rounded-2xl">
+                <div className="about-text w-full lg:w-1/2 text-center lg:text-left p-6 lg:p-8">
                     <h1 className="font-GeistSans text-7xl md:text-10xl lg:text-10xl font-black text-hexblack leading-none uppercase mb-4">
                         About
                     </h1>
