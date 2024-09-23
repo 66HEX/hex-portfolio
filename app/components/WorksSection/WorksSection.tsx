@@ -105,7 +105,7 @@ export default function WorksSection() {
                                 className="rounded-t-2xl"
                             />
                         </div>
-                        <div className="p-6 lg:p-8 flex flex-col justify-between flex-grow">
+                        <div className="p-6 lg:p-8 flex-grow flex flex-col">
                             <h2 className="font-GeistSans text-2xl font-bold text-hexblack mb-4">{project.title}</h2>
                             <p className="font-GeistMono text-base text-hexblack mb-4">{project.description}</p>
                             <div className="flex justify-between">
