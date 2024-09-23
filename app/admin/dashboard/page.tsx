@@ -243,7 +243,7 @@ export default function AdminDashboard() {
     return (
         <section className="w-screen min-h-screen p-4 md:p-8 lg:p-12 xl:p-16 bg-hexwhite flex flex-col items-center">
             <button
-                className="absolute top-5 left-5 text-hexblack text-base font-SupplyMono hover:underline cursor-pointer"
+                className="absolute top-5 left-5 text-hexblack text-base font-GeistMono hover:underline cursor-pointer"
                 onClick={handleLogOut}
             >
                 ← Log Out
@@ -253,17 +253,17 @@ export default function AdminDashboard() {
                 <Droppable droppableId="projects">
                     {(provided) => (
                         <div
-                            className="w-full max-w-7xl mx-auto bg-white p-4 md:p-8 rounded-2xl shadow-xl space-y-4"
+                            className="w-full max-w-7xl mx-auto p-4 md:p-8  space-y-4"
                             {...provided.droppableProps}
                             ref={provided.innerRef}
                         >
-                            <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack mt-5 md:mt-0">
+                            <h2 className="font-GeistSans text-2xl lg:text-3xl font-bold text-hexblack mt-5 md:mt-0">
                                 Add New Project
                             </h2>
 
                             <div className="my-8 bg-hexwhite p-8 rounded-2xl shadow-xl">
                                 <div
-                                    className="mt-4 flex flex-wrap md:flex-nowrap justify-between items-center space-y-4 md:space-y-0 font-SupplyMono">
+                                    className="mt-4 flex flex-wrap md:flex-nowrap justify-between items-center space-y-4 md:space-y-0 font-GeistMono">
                                     <input
                                         type="text"
                                         name="title"
@@ -295,7 +295,7 @@ export default function AdminDashboard() {
                                         className="w-full md:flex-grow px-4 py-2 text-base text-hexblack placeholder-hexlightgray border border-hexlightgray rounded-lg focus:outline-none focus:border-hexblack md:ml-4"
                                     />
                                 </div>
-                                <div className="mt-4 font-SupplyMono">
+                                <div className="mt-4 font-GeistMono">
                                     <textarea
                                         name="description"
                                         value={newProject.description}
@@ -308,13 +308,13 @@ export default function AdminDashboard() {
                                 <div className="mt-6 flex justify-center md:justify-end">
                                     <button
                                         onClick={handleAddProject}
-                                        className="px-6 py-2 text-lg font-bold font-NeueMontreal text-white bg-hexblack rounded-lg hover:bg-hexgray focus:outline-none"
+                                        className="px-6 py-2 text-lg font-bold font-GeistSans text-white bg-hexblack rounded-lg hover:bg-hexgray focus:outline-none"
                                     >
                                         Add Project
                                     </button>
                                 </div>
                             </div>
-                            <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack mb-6">
+                            <h2 className="font-GeistSans text-2xl lg:text-3xl font-bold text-hexblack mb-6">
                                 Project list
                             </h2>
 
@@ -339,14 +339,14 @@ export default function AdminDashboard() {
                                                 </div>
                                             )}
                                             <div className="flex-1 md:mr-10">
-                                                <h3 className="font-NeueMontreal text-xl font-semibold text-hexblack">
+                                                <h3 className="font-GeistSans text-xl font-semibold text-hexblack">
                                                     {project.title}
                                                 </h3>
-                                                <p className="font-SupplyMono text-base text-gray-700 hidden xl:block">
+                                                <p className="font-GeistMono text-base text-gray-700 hidden xl:block">
                                                     {project.description}
                                                 </p>
                                             </div>
-                                            <div className="flex md:space-x-10 font-SupplyMono mt-4 md:mt-0">
+                                            <div className="flex md:space-x-10 font-GeistMono mt-4 md:mt-0">
                                                 {project.githubLink && (
                                                     <a
                                                         href={project.githubLink}

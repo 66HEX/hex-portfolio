@@ -17,8 +17,8 @@ const config: Config = {
         hexgreen4: '#1A8E68',
       },
       fontFamily: {
-        NeueMontreal: 'NeueMontreal',
-        SupplyMono: 'SupplyMono'
+        GeistSans: 'GeistSans',
+        GeistMono: 'GeistMono'
       },
       fontSize: {
         '12xl': '10rem',

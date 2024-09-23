@@ -88,7 +88,7 @@ export default function WorksSection() {
     return (
         <section id="works" className="w-screen p-4 md:p-8 lg:p-12 xl:p-16 bg-hexwhite flex flex-col items-center justify-center overflow-hidden py-16">
             <div className="text-center mb-12">
-                <h1 className="font-NeueMontreal text-7xl md:text-10xl lg:text-10xl font-black text-hexblack tracking-tight leading-none uppercase text-center">
+                <h1 className="font-GeistSans text-7xl md:text-10xl lg:text-10xl font-black text-hexblack leading-none uppercase text-center">
                     works
                 </h1>
             </div>
@@ -105,27 +105,27 @@ export default function WorksSection() {
                                 className="rounded-t-2xl"
                             />
                         </div>
-                        <div className="p-6 lg:p-8">
-                            <h2 className="font-NeueMontreal text-2xl lg:text-3xl font-bold text-hexblack mb-4">{project.title}</h2>
-                            <p className="font-SupplyMono text-lg text-hexblack mb-4">{project.description}</p>
+                        <div className="p-6 lg:p-8 flex flex-col justify-between flex-grow">
+                            <h2 className="font-GeistSans text-2xl font-bold text-hexblack mb-4">{project.title}</h2>
+                            <p className="font-GeistMono text-base text-hexblack mb-4">{project.description}</p>
                             <div className="flex justify-between">
                                 {project.githubLink ? (
                                     <a href={project.githubLink} target="_blank" rel="noopener noreferrer"
-                                       className="font-SupplyMono text-xl text-hexblack underline">
+                                       className="font-GeistMono text-xl text-hexblack underline">
                                         GitHub
                                     </a>
                                 ) : (
-                                    <span className="font-SupplyMono text-xl text-hexblack opacity-0">
+                                    <span className="font-GeistMono text-xl text-hexblack opacity-0">
                                         GitHub
                                     </span>
                                 )}
                                 {project.liveDemoLink ? (
                                     <a href={project.liveDemoLink} target="_blank" rel="noopener noreferrer"
-                                       className="font-SupplyMono text-xl text-hexblack underline">
+                                       className="font-GeistMono text-xl text-hexblack underline">
                                         Live Demo
                                     </a>
                                 ) : (
-                                    <span className="font-SupplyMono text-xl text-hexblack opacity-0">
+                                    <span className="font-GeistMono text-xl text-hexblack opacity-0">
                                         Live Demo
                                     </span>
                                 )}

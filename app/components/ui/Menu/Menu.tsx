@@ -126,35 +126,35 @@ const Menu: React.FC = () => {
             >
                 <li className="w-full text-2xl font-medium list-none flex items-center justify-between">
                     <Link href="#home" aria-label="home section button"
-                          className="font-SupplyMono text-4xl text-hexwhite"
+                          className="font-GeistSans text-4xl text-hexwhite"
                           onClick={(e) => handleClick(e, 'home')}>
                         home
                     </Link>
                 </li>
                 <li className="w-full text-2xl font-medium list-none flex items-center justify-between">
                     <Link href="#about" aria-label="about section button"
-                          className="font-SupplyMono text-4xl text-hexwhite"
+                          className="font-GeistSans text-4xl text-hexwhite"
                           onClick={(e) => handleClick(e, 'about')}>
                         about
                     </Link>
                 </li>
                 <li className="w-full text-2xl font-medium list-none flex items-center justify-between">
                     <Link href="#services" aria-label="services section button"
-                          className="font-SupplyMono text-4xl text-hexwhite"
+                          className="font-GeistSans text-4xl text-hexwhite"
                           onClick={(e) => handleClick(e, 'services')}>
                         services
                     </Link>
                 </li>
                 <li className="w-full text-2xl font-medium list-none flex items-center justify-between">
                     <Link href="#works" aria-label="works section button"
-                          className="font-SupplyMono text-4xl text-hexwhite"
+                          className="font-GeistSans text-4xl text-hexwhite"
                           onClick={(e) => handleClick(e, 'works')}>
                         works
                     </Link>
                 </li>
                 <li className="w-full text-2xl font-medium list-none flex items-center justify-between">
                     <Link href="#contact" aria-label="contact section button"
-                          className="font-SupplyMono text-4xl text-hexwhite"
+                          className="font-GeistSans text-4xl text-hexwhite"
                           onClick={(e) => handleClick(e, 'contact')}>
                         contact
                     </Link>

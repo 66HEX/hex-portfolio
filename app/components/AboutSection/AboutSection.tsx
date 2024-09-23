@@ -9,7 +9,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutSection() {
     useEffect(() => {
-
         gsap.fromTo(
             ".profile-img",
             { opacity: 0, scale: 0.9 },
@@ -62,14 +61,17 @@ export default function AboutSection() {
                     </div>
                 </div>
                 <div className="about-text w-full lg:w-1/2 text-center lg:text-left p-6 lg:p-8 shadow-2xl rounded-2xl">
-                    <h1 className="font-NeueMontreal text-7xl md:text-10xl lg:text-10xl font-black text-hexblack tracking-tight leading-none uppercase mb-8">
-                        about
+                    <h1 className="font-GeistSans text-7xl md:text-10xl lg:text-10xl font-black text-hexblack leading-none uppercase mb-4">
+                        About
                     </h1>
-                    <p className="font-SupplyMono text-hexblack text-lg leading-relaxed mb-6">
-                        I am Marek Jóźwiak, a passionate web developer with a keen eye for design and a deep understanding of modern web technologies. My journey in web development started several years ago, and since then, I&#8217;ve honed my skills in both front-end and back-end development.
+                    <p className="font-GeistMono text-hexblack text-base leading-relaxed mb-4 text-justify">
+                        I am Marek Jóźwiak, a web developer with a background in electronics and production management. My education and experience have equipped me with strong analytical skills, applied in both front-end and back-end development to deliver high-quality, scalable solutions.
                     </p>
-                    <p className="font-SupplyMono text-hexblack text-lg leading-relaxed mb-6">
-                        Whether it&#8217;s creating a custom web design from scratch or developing a complex, scalable application, I always strive to deliver high-quality work that exceeds expectations. I am committed to continuous learning and staying up-to-date with the latest trends and technologies in the industry.
+                    <p className="font-GeistMono text-hexblack text-base leading-relaxed mb-4 text-justify">
+                        Before web development, I served as Deputy Production Manager, which enhanced my leadership and communication skills and deepened my understanding of technical processes. I excel at working under pressure and ensuring smooth project execution.
+                    </p>
+                    <p className="font-GeistMono text-hexblack text-base leading-relaxed mb-4 text-justify">
+                        I am committed to continuous learning and staying updated with the latest web technologies to provide innovative, user-friendly solutions.
                     </p>
                 </div>
             </div>

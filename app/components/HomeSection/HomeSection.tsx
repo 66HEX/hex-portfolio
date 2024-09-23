@@ -42,7 +42,7 @@ export default function HomeSection() {
             <div className="h-full w-full relative flex justify-center items-center flex-col gap-10 scrolltrigger">
                 <GradientCanvas />
                 <Logo className="h-14 w-auto fill-hexwhite absolute top-5 left-5" alt="Logo" data-blobity />
-                <h1 className="font-NeueMontreal text-8xl md:text-12xl lg:text-12xl font-black text-hexwhite tracking-tight leading-none uppercase text-center z-10">
+                <h1 className="font-GeistSans text-8xl md:text-12xl lg:text-12xl font-black text-hexwhite leading-none uppercase text-center z-10">
                     <span className="block md:block lg:block">hex</span>
                     <span className="block md:block lg:inline">the </span>
                     <span className="block md:block lg:inline">coder</span>
@@ -50,10 +50,10 @@ export default function HomeSection() {
                 <div onClick={(event) => handleClick(event, "services")}>
                     <RotatingButton />
                 </div>
-                <p className="font-SupplyMono text-hexwhite absolute bottom-5 right-5">
+                <p className="font-GeistMono text-hexwhite absolute bottom-5 right-5">
                     Available for freelance work
                 </p>
-                <p className="font-SupplyMono text-hexwhite absolute bottom-5 left-5 hidden md:block">
+                <p className="font-GeistMono text-hexwhite absolute bottom-5 left-5 hidden md:block">
                     (Web designer & developer)
                 </p>
             </div>

@@ -1,14 +1,15 @@
 @font-face {
-    font-family: 'NeueMontreal';
-    src: url('PPNeueMontreal-Variable.woff2') format('woff2'),
-    url('PPNeueMontreal-Variable.woff') format('woff');
+    font-family: 'GeistSans';
+    src: url('GeistVF.woff2') format('woff2'),
+    url('GeistVF.woff') format('woff');
     font-weight: 100 900;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'SupplyMono';
-    src: url('PPSupplyMono-Variable.woff') format('woff');
+    font-family: 'GeistMono';
+    src: url('GeistMonoVF.woff2') format('woff2'),
+    url('GeistMonoVF.woff') format('woff');
     font-weight: 100 900;
     font-style: normal;
 }

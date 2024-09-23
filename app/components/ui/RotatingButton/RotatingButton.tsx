@@ -27,9 +27,9 @@ const Button: React.FC = () => {
     return (
         <div
             style={{
-                width: '150px',
-                height: '150px',
-                borderRadius: '75px',
+                width: '140px',
+                height: '140px',
+                borderRadius: '70px',
             }}
             className="relative flex justify-center items-center mt-5 md:mt-0"
         >
@@ -47,7 +47,7 @@ const Button: React.FC = () => {
                 style={{
                     animation: 'textRotation 8s linear infinite',
                 }}
-                className="text absolute h-full w-full text-hexwhite text-2xl font-SupplyMono" ref={textRef}>
+                className="text absolute h-full w-full text-hexwhite text-lg font-SupplyMono" ref={textRef}>
                 <p>services•services•</p>
             </div>
         </div>
