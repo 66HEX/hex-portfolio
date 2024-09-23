@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const servicesData = [
     {
         title: "Custom Web Design",
-        description: "Crafting unique and responsive designs tailored to your brand.",
+        description: "Crafting unique, responsive, and aesthetically pleasing web designs tailored your brand.",
         icon: <FaPaintBrush className="text-5xl mb-4 text-hexblack" />,
     },
     {
